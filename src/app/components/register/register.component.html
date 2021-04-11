@@ -1,0 +1,12 @@
+<h1>Área de acceso</h1>
+<input type="email" id="email" placeholder="Insert email" #email required />
+<input
+  type="password"
+  id="password"
+  placeholder="Insert password"
+  #password
+  required
+/>
+<button type="submit" (click)="register(email.value, password.value)">
+  Log in
+</button>
