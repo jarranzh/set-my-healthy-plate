@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import './_variables.scss';
+
+body {
+  background-color: $tertiary-green;
+  color: $blue;
+  font-family: Helvetica, sans-serif;
+  margin: 5rem 10rem;
+}
+
+button {
+  background-color: $blue;
+  border-radius: 0.5rem;
+  border-style: none;
+  color: white;
+  margin: 1rem 0;
+  padding: 1rem 2rem;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+input {
+  background-color: $tertiary-green;
+  border: 0;
+  border-bottom: 0.05rem solid black;
+  padding: 0.25rem 0.5rem;
+}
+
+.inputGroup {
+  margin-bottom: 1rem;
+}
+
+.centered {
+  text-align: center;
+}

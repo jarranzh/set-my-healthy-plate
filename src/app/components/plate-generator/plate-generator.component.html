@@ -1,4 +1,19 @@
-<div class="wrapper" *ngIf="user">
+<div class="centered">
+  <h1>Set My Healthy Plate</h1>
+  <button (click)="getRandomPlate()">Quiero un Healthy Plate</button>
+  <div *ngIf="randomPlate">
+    <p>Proteína: {{ randomPlate.protein }}</p>
+    <p>Cereal: {{ randomPlate.cereal }}</p>
+    <p>Verdura: {{ randomPlate.vegetable }}</p>
+    <p>Fruta: {{ randomPlate.fruit }}</p>
+
+    <button (click)="saveAsFav()">Guardar en favoritos</button>
+  </div>
+
+  <div></div>
+</div>
+
+<!-- <div class="wrapper" *ngIf="user?.emailVerified">
   <div class="section">
     <p>FRUTAS:</p>
     <ul *ngFor="let fruit of fruits">
@@ -65,4 +80,4 @@
       <p>------------</p>
     </div>
   </div>
-</div>
+</div> -->

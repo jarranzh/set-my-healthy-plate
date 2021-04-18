@@ -1,12 +1,81 @@
-<h1>Área de acceso</h1>
-<input type="email" id="email" placeholder="Insert email" #email required />
-<input
-  type="password"
-  id="password"
-  placeholder="Insert password"
-  #password
-  required
-/>
-<button type="submit" (click)="register(email.value, password.value)">
-  Log in
-</button>
+<h1>Bienvenid@ a Set My Healthy Plate</h1>
+
+<div class="centered">
+  <h2>Registro</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="inputGroup">
+      <input
+        type="email"
+        [formControl]="email"
+        placeholder="Correo electrónico"
+      />
+      <div
+        style="color: red;"
+        *ngIf="
+          (registerForm.get('email')?.errors &&
+            registerForm.get('email')?.touched) ||
+          registerForm.get('email')?.dirty
+        "
+      >
+        <span *ngIf="registerForm.get('email')?.errors?.required"
+          >User email is required</span
+        >
+        <span *ngIf="registerForm.get('email')?.errors?.pattern">
+          User email must be like name@domain.com</span
+        >
+      </div>
+    </div>
+
+    <div class="inputGroup">
+      <input
+        type="text"
+        [formControl]="userName"
+        placeholder="Nombre de usuario"
+      />
+      <div
+        style="color: red;"
+        *ngIf="
+          (registerForm.get('userName')?.errors &&
+            registerForm.get('userName')?.touched) ||
+          registerForm.get('userName')?.dirty
+        "
+      >
+        <span *ngIf="registerForm.get('userName')?.errors?.required"
+          >User name is required</span
+        >
+      </div>
+    </div>
+
+    <div class="inputGroup">
+      <input
+        type="password"
+        [formControl]="password"
+        placeholder="Contraseña"
+      />
+      <div
+        style="color: red;"
+        *ngIf="
+          registerForm.get('password')?.errors &&
+          (registerForm.get('password')?.touched ||
+            registerForm.get('password')?.dirty)
+        "
+      >
+        <span *ngIf="registerForm.get('password')?.errors?.required"
+          >User password is required</span
+        >
+      </div>
+    </div>
+
+    <div>
+      <p *ngIf="message" style="color: red;">{{ message }}</p>
+      <button type="submit" [disabled]="!registerForm.valid">
+        Registrarme
+      </button>
+    </div>
+
+    <div>
+      <p>¿Ya estás registrado? Inicia sesión <a href="/login">aquí</a></p>
+    </div>
+  </form>
+</div>

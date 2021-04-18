@@ -1,43 +1,57 @@
-<h1>LOG IN</h1>
+<h1>Bienvenid@ a Set My Healthy Plate</h1>
+<div class="centered">
+  <h2>Login</h2>
 
-<form [formGroup]="loginForm" (ngSubmit)="login()">
-  <div>
-    <label>Email:</label>
-    <input type="email" [formControl]="email" />
-    <span
-      style="color: red;"
-      *ngIf="
-        (loginForm.get('email').errors && loginForm.get('email').touched) ||
-        loginForm.get('email').dirty
-      "
-    >
-      <span *ngIf="loginForm.get('email').errors?.required"
-        >User email is required</span
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="inputGroup">
+      <input
+        type="email"
+        [formControl]="email"
+        placeholder="Correo electrónico"
+      />
+      <div
+        style="color: red;"
+        *ngIf="
+          (loginForm.get('email')?.errors && loginForm.get('email')?.touched) ||
+          loginForm.get('email')?.dirty
+        "
       >
-      <span *ngIf="loginForm.get('email').errors?.pattern">
-        User email must be like name@domain.com</span
+        <span *ngIf="loginForm.get('email')?.errors?.required"
+          >User email is required</span
+        >
+        <span *ngIf="loginForm.get('email')?.errors?.pattern">
+          User email must be like name@domain.com</span
+        >
+      </div>
+    </div>
+
+    <div class="inputGroup">
+      <input
+        type="password"
+        [formControl]="password"
+        placeholder="Contraseña"
+      />
+      <div
+        style="color: red;"
+        *ngIf="
+          loginForm.get('password')?.errors &&
+          (loginForm.get('password')?.touched ||
+            loginForm.get('password')?.dirty)
+        "
       >
-    </span>
-  </div>
+        <span *ngIf="loginForm.get('password')?.errors?.required"
+          >User password is required</span
+        >
+      </div>
+    </div>
+
+    <div>
+      <p *ngIf="message" style="color: red;">{{ message }}</p>
+      <button type="submit" [disabled]="!loginForm.valid">ACCEDER</button>
+    </div>
+  </form>
 
   <div>
-    <label>Password:</label>
-    <input type="password" [formControl]="password" />
-    <span
-      style="color: red;"
-      *ngIf="
-        loginForm.get('password').errors &&
-        (loginForm.get('password').touched || loginForm.get('password').dirty)
-      "
-    >
-      <span *ngIf="loginForm.get('password').errors.required"
-        >User password is required</span
-      >
-    </span>
+    <p>¿No tienes cuenta aún? Regístrate <a href="/register">aquí</a></p>
   </div>
-
-  <div>
-    <p *ngIf="message" style="color: red;">{{ message }}</p>
-    <button type="submit" [disabled]="!loginForm.valid">Login</button>
-  </div>
-</form>
+</div>

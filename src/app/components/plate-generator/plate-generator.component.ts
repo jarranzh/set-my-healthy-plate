@@ -18,6 +18,7 @@ export class PlateGeneratorComponent implements OnInit {
   public menu: any[] = [];
   public favorite = false;
   public user: any;
+  public randomPlate: any;
 
   constructor(
     private db: AngularFireDatabase,
@@ -110,12 +111,13 @@ export class PlateGeneratorComponent implements OnInit {
     const cereal = this.getRandomIngredient(this.cereals);
     const fruit = this.getRandomIngredient(this.fruits);
     const vegetable = this.getRandomIngredient(this.vegetables);
-    return {
+    this.randomPlate = {
       protein: protein,
       cereal: cereal,
       fruit: fruit,
       vegetable: vegetable
     };
+    return this.randomPlate;
   };
 
   public setMenu = () => {
@@ -135,5 +137,8 @@ export class PlateGeneratorComponent implements OnInit {
       .child(ingredient)
       .set(type);
   };
+
+  public saveAsFav = () => {};
+
   ngOnInit(): void {}
 }
