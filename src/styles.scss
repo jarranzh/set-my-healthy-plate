@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import './_variables.scss';
+// $fa-font-path: '../node_modules/font-awesome/fonts';
+// @import '../node_modules/font-awesome/scss/font-awesome.scss';
+// - @fortawesome/fontawesome-svg-core
+// - @fortawesome/fontawesome-common-types
+// @import '../node_modules/font-awesome/scss/font-awesome.scss';
 
 body {
   background-color: $tertiary-green;

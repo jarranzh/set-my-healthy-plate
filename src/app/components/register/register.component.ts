@@ -8,6 +8,7 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AngularFireModule } from '@angular/fire';
 
 @Component({
   selector: 'app-register',
@@ -26,6 +27,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private auth: AngularFireAuth,
     private db: AngularFireDatabase,
+    private firebase: AngularFireModule,
     private router: Router,
     private formBuilder: FormBuilder
   ) {}
@@ -50,13 +52,19 @@ export class RegisterComponent implements OnInit {
   public register = () => {
     this.auth
       .createUserWithEmailAndPassword(this.email.value, this.password.value)
-      .then(user => {
-        console.log('USER registered', user);
+      .then(credential => {
+        console.log('USER registered', credential);
         this.db.database
           .ref('users')
           .child(this.userName.value)
-          .set('0');
-        this.verificarEmail(user);
+          .child('email')
+          .set(this.email.value);
+
+        if (credential.user) {
+          credential.user.updateProfile({ displayName: this.userName.value });
+        }
+
+        this.verificarEmail(credential);
       })
       .catch(error => {
         const errorCode = error.code;

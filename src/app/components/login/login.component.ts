@@ -50,7 +50,12 @@ export class LoginComponent implements OnInit {
       .signInWithEmailAndPassword(this.email.value, this.password.value)
       .then(user => {
         console.log('USER SIGNED', user);
+        console.log(
+          'bienvenido:',
+          user.user ? user.user.displayName : 'no displayname'
+        );
         this.userLogged = user.user;
+
         this.userLogged.emailVerified
           ? this.router.navigate(['/plate-generator'])
           : alert('This email is not verified yet. Please check your inbox');

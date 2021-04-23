@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
+import { faHeart as solidFaHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as regularFaHeart } from '@fortawesome/free-regular-svg-icons';
+import { faBan } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-plate-generator',
@@ -9,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./plate-generator.component.scss']
 })
 export class PlateGeneratorComponent implements OnInit {
+  isFavorite = false;
   public proteins: any;
   public vegetables: any;
   public fruits: any;
@@ -20,13 +24,17 @@ export class PlateGeneratorComponent implements OnInit {
   public user: any;
   public randomPlate: any;
 
+  public solidFaHeart = solidFaHeart;
+  public regularFaHeart = regularFaHeart;
+  public faBan = faBan;
+
   constructor(
     private db: AngularFireDatabase,
     private auth: AngularFireAuth,
     private router: Router
   ) {
     this.auth.onAuthStateChanged((user: any) => {
-      if (user) {
+      if (user && user.emailVerified) {
         this.user = user;
         console.log('usuario conectado:', user);
       } else {
@@ -48,20 +56,19 @@ export class PlateGeneratorComponent implements OnInit {
         this.fruits = Object.keys(snapshot.val()).filter(
           key => snapshot.val()[key] === 'fruit'
         );
-        // this.randomFruit = this.getRandomIngredient(this.fruits);
-
         this.cereals = Object.keys(snapshot.val()).filter(
           key => snapshot.val()[key] === 'cereal'
         );
       });
 
-    this.db.database
-      .ref('users')
-      .get()
-      .then((snapshot: any) => {
-        console.log('prohibidos', snapshot.val().usertest.prohibido);
-        console.log('favoritos', snapshot.val().usertest.platosFavoritos);
-      });
+    //Leer favoritos o prohibidos
+    // this.db.database
+    //   .ref('users')
+    //   .get()
+    //   .then((snapshot: any) => {
+    //     console.log('prohibidos', snapshot.val().usertest.prohibido);
+    //     console.log('favoritos', snapshot.val().usertest.platosFavoritos);
+    //   });
 
     // WRITE IN DATABASE:
     this.db.database
@@ -83,19 +90,20 @@ export class PlateGeneratorComponent implements OnInit {
       .ref('users')
       .child('usertest2')
       .remove();
-
-    this.getLength();
   }
 
-  public getLength = () => {
-    console.log(
-      this.db.database
-        .ref('users')
-        .get()
-        .then((snapshot: any) => {
-          console.log('prohibidos', snapshot.val().usertest3.prohibidos.length);
-        })
-    );
+  getLength = async (element: string) => {
+    let length = 0;
+
+    const snapshot = await this.db.database
+      .ref(`users/${this.user.displayName}`)
+      .get();
+
+    if (snapshot.val()[element]) {
+      length = snapshot.val()[element].length;
+      console.log(element, snapshot.val()[element].length);
+    }
+    return length;
   };
 
   public getRandomIngredient = (familyOfIngredients: any) => {
@@ -106,7 +114,7 @@ export class PlateGeneratorComponent implements OnInit {
     return randomItem;
   };
 
-  public getRandomPlate = () => {
+  public getRandomPlate = async () => {
     const protein = this.getRandomIngredient(this.proteins);
     const cereal = this.getRandomIngredient(this.cereals);
     const fruit = this.getRandomIngredient(this.fruits);
@@ -117,7 +125,31 @@ export class PlateGeneratorComponent implements OnInit {
       fruit: fruit,
       vegetable: vegetable
     };
+
+    this.isFavorite = await this.getIsFavorite();
     return this.randomPlate;
+  };
+
+  public getIsFavorite = async () => {
+    const snapshot = await this.db.database
+      .ref(`users/${this.user.displayName}/favoritos`)
+      .get();
+
+    console.log(snapshot.val());
+
+    const isFavorite = snapshot
+      .val()
+      .find(
+        (plate: any) =>
+          plate.cereal === this.randomPlate.cereal &&
+          plate.protein === this.randomPlate.protein &&
+          plate.vegetable === this.randomPlate.vegetable &&
+          plate.fuit === this.randomPlate.fruit
+      )
+      ? true
+      : false;
+
+    return isFavorite;
   };
 
   public setMenu = () => {
@@ -138,7 +170,35 @@ export class PlateGeneratorComponent implements OnInit {
       .set(type);
   };
 
-  public saveAsFav = () => {};
+  public saveAsFav = async () => {
+    const favoritesLength = await this.getLength('favoritos');
+    this.db.database
+      .ref(`users/${this.user.displayName}/favoritos/${favoritesLength}`)
+      .set(this.randomPlate);
+
+    this.isFavorite = true;
+  };
+
+  public deleteFav = async () => {
+    const favoritesLength = await this.getLength('favoritos');
+
+    this.db.database
+      .ref(`users/${this.user.displayName}/favoritos/${favoritesLength - 1}`)
+      .remove();
+
+    this.isFavorite = false;
+  };
+
+  //añadir en algún sitio la lista de prohibidos para poder volver a añadirlos
+
+  public banIngredient = async (ingredient: string, category: string) => {
+    console.log('prohibir:', ingredient);
+    const bannedLength = await this.getLength('prohibidos');
+    this.db.database
+      .ref(`users/${this.user.displayName}/prohibidos/${bannedLength}`)
+      .set(ingredient);
+    // this.randomPlate[category] = this.getRandomIngredient(this[category]);
+  };
 
   ngOnInit(): void {}
 }

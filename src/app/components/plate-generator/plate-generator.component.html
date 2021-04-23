@@ -2,15 +2,55 @@
   <h1>Set My Healthy Plate</h1>
   <button (click)="getRandomPlate()">Quiero un Healthy Plate</button>
   <div *ngIf="randomPlate">
-    <p>Proteína: {{ randomPlate.protein }}</p>
-    <p>Cereal: {{ randomPlate.cereal }}</p>
-    <p>Verdura: {{ randomPlate.vegetable }}</p>
-    <p>Fruta: {{ randomPlate.fruit }}</p>
+    <div class="aligned-h">
+      <p>Proteína: {{ randomPlate.protein }}</p>
+      <!-- <select>
+        <option value="hola">hola</option>
+        <option value="adios">adiós</option>
+      </select> -->
+      <button>cambiar</button>
+      <fa-icon
+        [icon]="faBan"
+        (click)="banIngredient(randomPlate.protein, 'proteins')"
+      ></fa-icon>
+    </div>
+    <div class="aligned-h">
+      <p>Cereal: {{ randomPlate.cereal }}</p>
+      <button>cambiar</button>
+      <fa-icon
+        [icon]="faBan"
+        (click)="banIngredient(randomPlate.cereal, 'cereals')"
+      ></fa-icon>
+    </div>
+    <div class="aligned-h">
+      <p>Verdura: {{ randomPlate.vegetable }}</p>
+      <button>cambiar</button>
+      <fa-icon
+        [icon]="faBan"
+        (click)="banIngredient(randomPlate.vegetable, 'vegetables')"
+      ></fa-icon>
+    </div>
+    <div class="aligned-h">
+      <p>Fruta: {{ randomPlate.fruit }}</p>
+      <button>cambiar</button>
+      <fa-icon
+        [icon]="faBan"
+        (click)="banIngredient(randomPlate.fruit, 'fruits')"
+      ></fa-icon>
+    </div>
 
-    <button (click)="saveAsFav()">Guardar en favoritos</button>
+    <fa-icon
+      [icon]="solidFaHeart"
+      (click)="saveAsFav()"
+      *ngIf="!isFavorite"
+    ></fa-icon>
+
+    <fa-icon
+      [icon]="regularFaHeart"
+      (click)="deleteFav()"
+      *ngIf="isFavorite"
+    ></fa-icon>
   </div>
-
-  <div></div>
 </div>
 
 <!-- <div class="wrapper" *ngIf="user?.emailVerified">
