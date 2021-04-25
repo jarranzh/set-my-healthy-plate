@@ -1,8 +1,18 @@
 <div class="centered">
   <h1>Set My Healthy Plate</h1>
-  <button (click)="getRandomPlate()">Quiero un Healthy Plate</button>
   <div *ngIf="randomPlate">
     <div class="aligned-h">
+      <fa-icon
+        [icon]="solidFaHeart"
+        (click)="saveAsFav()"
+        *ngIf="!isFavorite"
+      ></fa-icon>
+
+      <fa-icon
+        [icon]="regularFaHeart"
+        (click)="deleteFav()"
+        *ngIf="isFavorite"
+      ></fa-icon>
       <p>Proteína: {{ randomPlate.protein }}</p>
       <!-- <select>
         <option value="hola">hola</option>
@@ -38,19 +48,10 @@
         (click)="banIngredient(randomPlate.fruit, 'fruits')"
       ></fa-icon>
     </div>
-
-    <fa-icon
-      [icon]="solidFaHeart"
-      (click)="saveAsFav()"
-      *ngIf="!isFavorite"
-    ></fa-icon>
-
-    <fa-icon
-      [icon]="regularFaHeart"
-      (click)="deleteFav()"
-      *ngIf="isFavorite"
-    ></fa-icon>
   </div>
+  <button class="button--circle" (click)="getRandomPlate()">
+    Quiero un Healthy Plate
+  </button>
 </div>
 
 <!-- <div class="wrapper" *ngIf="user?.emailVerified">

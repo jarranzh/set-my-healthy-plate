@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PlateGeneratorComponent } from './components/plate-generator/plate-generator.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FavoritesComponent } from './components/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     LoginComponent,
     RegisterComponent,
     PlateGeneratorComponent,
-    HeaderComponent
+    HeaderComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,

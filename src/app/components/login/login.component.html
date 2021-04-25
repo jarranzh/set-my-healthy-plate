@@ -12,8 +12,7 @@
       <div
         style="color: red;"
         *ngIf="
-          (loginForm.get('email')?.errors && loginForm.get('email')?.touched) ||
-          loginForm.get('email')?.dirty
+          loginForm.get('email')?.errors && loginForm.get('email')?.touched
         "
       >
         <span *ngIf="loginForm.get('email')?.errors?.required"

@@ -78,7 +78,6 @@ export class RegisterComponent implements OnInit {
     registeredUser.user
       .sendEmailVerification()
       .then(() => {
-        // this.goHome();
         // Email sent.
         alert(
           'Please check your inbox. We sent you an email to verify your account'
@@ -90,9 +89,5 @@ export class RegisterComponent implements OnInit {
         // An error happened.
         console.log('an error happened', error);
       });
-  };
-
-  public goHome = () => {
-    this.router.navigate(['/plate-generator']);
   };
 }

@@ -2,6 +2,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,7 @@ import { Location } from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
   public routeUrl!: string;
+  public faHome = faHome;
 
   constructor(
     private auth: AngularFireAuth,
@@ -31,6 +33,10 @@ export class HeaderComponent implements OnInit {
         var errorMessage = error.message;
         alert(errorMessage);
       });
+  };
+
+  public goHome = () => {
+    this.router.navigate(['/plate-generator']);
   };
 
   ngOnInit(): void {}

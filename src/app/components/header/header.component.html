@@ -1,2 +1,40 @@
-<button type="button" (click)="logOut()">LOG OUT</button>
-<button *ngIf="routeUrl !== '/login'">home</button>
+<header class="nav">
+  <nav role="navigation">
+    <div id="menuToggle" class="menuToggle">
+      <input type="checkbox" class="menuToggle__input" />
+
+      <span class="input__item"></span>
+      <span class="input__item"></span>
+      <span class="input__item"></span>
+
+      <ul class="menuToggle__sideMenu">
+        <a href="#" class="sideMenu__item"><li>Home</li></a>
+        <a href="#" class="sideMenu__item"><li>About</li></a>
+        <a href="#" class="sideMenu__item"><li>Info</li></a>
+        <a href="#" class="sideMenu__item"><li>Contact</li></a>
+        <a href="#" class="sideMenu__item"><li>Show me more</li></a>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- <header class="nav">
+  <img
+    class="nav__list__link--logo"
+    src="../../../assets/logo.png"
+    alt="logo"
+    (click)="goHome()"
+  />
+  <nav class="nav__list">
+    <ul>
+      <li>
+        <a class="nav__list__link" href="#">¿Qué es SetMyHealthyPlate?</a>
+      </li>
+      <li><a class="nav__list__link" href="/favorites">Favoritos</a></li>
+      <li><a class="nav__list__link" href="#">Menú semanal</a></li>
+      <li><a class="nav__list__link" href="#">Lista de la compra</a></li>
+      <li><a class="nav__list__link" href="#">Mi perfil</a></li>
+      <li><a class="nav__list__link" href="#" (click)="logOut()">Logout</a></li>
+    </ul>
+  </nav>
+</header> -->

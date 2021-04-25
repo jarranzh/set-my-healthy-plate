@@ -2,3 +2,16 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.button--circle {
+  border-radius: 50%;
+  font-size: 1.2rem;
+  height: 10rem;
+  width: 10rem;
+  transition: 0.5s;
+
+  &:hover {
+    height: 11rem;
+    width: 11rem;
+  }
+}
