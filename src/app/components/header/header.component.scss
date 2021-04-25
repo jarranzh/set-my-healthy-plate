@@ -1,8 +1,14 @@
 @import '../../../_variables.scss';
 
+.nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
 .menuToggle {
   display: block;
-  padding: 2rem;
   position: relative;
   z-index: 1;
   -webkit-user-select: none;
@@ -92,48 +98,55 @@
   }
 
   &:hover {
-    color: tomato;
+    color: $tertiary-green;
+  }
+}
+
+.logo {
+  cursor: pointer;
+  height: 4rem;
+}
+
+.nav__list {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .nav nav {
+    order: 2;
+  }
+  .menuToggle {
+    display: none;
+  }
+
+  .nav__list {
+    align-items: center;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      flex: 3;
+    }
+
+    &__link {
+      color: $blue;
+      font-weight: 100;
+      letter-spacing: 2px;
+      text-decoration: none;
+      padding: 1rem 0;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      transition: all 0.5s;
+
+      &:hover {
+        color: white;
+        background-color: $blue;
+      }
+    }
   }
 }
 
 //--------------
-// .nav {
-//   align-items: center;
-//   display: flex;
-//   justify-content: space-between;
-//   padding: 1rem;
-// }
-
-// .nav__list ul {
-//   align-items: center;
-//   display: flex;
-//   list-style: none;
-//   margin: 0;
-//   padding: 0;
-// }
-
-// .nav__list li {
-//   flex: 3;
-// }
-
-// .nav__list__link {
-//   color: $blue;
-//   font-weight: 100;
-//   letter-spacing: 2px;
-//   text-decoration: none;
-//   padding: 1rem 0;
-//   display: inline-block;
-//   width: 100%;
-//   text-align: center;
-//   transition: all 0.5s;
-
-//   &--logo {
-//     cursor: pointer;
-//     height: 6rem;
-//   }
-
-//   &:hover {
-//     color: white;
-//     background-color: $blue;
-//   }
-// }

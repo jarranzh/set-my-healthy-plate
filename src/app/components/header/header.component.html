@@ -1,5 +1,6 @@
 <header class="nav">
   <nav role="navigation">
+    <!-- Mobile navigation -->
     <div id="menuToggle" class="menuToggle">
       <input type="checkbox" class="menuToggle__input" />
 
@@ -8,14 +9,36 @@
       <span class="input__item"></span>
 
       <ul class="menuToggle__sideMenu">
-        <a href="#" class="sideMenu__item"><li>Home</li></a>
-        <a href="#" class="sideMenu__item"><li>About</li></a>
-        <a href="#" class="sideMenu__item"><li>Info</li></a>
-        <a href="#" class="sideMenu__item"><li>Contact</li></a>
-        <a href="#" class="sideMenu__item"><li>Show me more</li></a>
+        <a href="#" class="sideMenu__item"
+          ><li>Conoce Set My Healthy Plate</li></a
+        >
+        <a href="/favorites" class="sideMenu__item"><li>Favoritos</li></a>
+        <a href="#" class="sideMenu__item"><li>Menú semanal</li></a>
+        <a href="#" class="sideMenu__item"><li>Lista de la compra</li></a>
+        <a href="#" class="sideMenu__item" (click)="logOut()"
+          ><li>Logout</li></a
+        >
       </ul>
     </div>
+
+    <!-- Desktop navigation -->
+    <ul class="nav__list">
+      <li>
+        <a class="nav__list__link" href="#">¿Qué es SetMyHealthyPlate?</a>
+      </li>
+      <li><a class="nav__list__link" href="/favorites">Favoritos</a></li>
+      <li><a class="nav__list__link" href="#">Menú semanal</a></li>
+      <li><a class="nav__list__link" href="#">Lista de la compra</a></li>
+      <li><a class="nav__list__link" href="#">Mi perfil</a></li>
+      <li><a class="nav__list__link" href="#" (click)="logOut()">Logout</a></li>
+    </ul>
   </nav>
+  <img
+    class="logo"
+    src="../../../assets/logo.png"
+    alt="logo"
+    (click)="goHome()"
+  />
 </header>
 
 <!-- <header class="nav">

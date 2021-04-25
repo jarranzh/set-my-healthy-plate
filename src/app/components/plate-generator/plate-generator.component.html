@@ -1,52 +1,93 @@
 <div class="centered">
-  <h1>Set My Healthy Plate</h1>
-  <div *ngIf="randomPlate">
-    <div class="aligned-h">
-      <fa-icon
-        [icon]="solidFaHeart"
-        (click)="saveAsFav()"
-        *ngIf="!isFavorite"
-      ></fa-icon>
-
-      <fa-icon
-        [icon]="regularFaHeart"
-        (click)="deleteFav()"
-        *ngIf="isFavorite"
-      ></fa-icon>
-      <p>Proteína: {{ randomPlate.protein }}</p>
-      <!-- <select>
+  <h1 *ngIf="!randomPlate">Set My Healthy Plate</h1>
+  <div *ngIf="randomPlate" class="randomPlate">
+    <div class="pieContainer">
+      <div class="pieBackground"></div>
+      <div id="pieSlice1" class="hold">
+        <div class="pie">
+          <div class="pieText1">Proteína</div>
+        </div>
+      </div>
+      <div id="pieSlice2" class="hold">
+        <div class="pie">
+          <div class="pieText2">Cereal</div>
+        </div>
+      </div>
+      <div id="pieSlice3" class="hold">
+        <div class="pie">
+          <div class="pieText3">Fruta</div>
+        </div>
+      </div>
+      <div id="pieSlice4" class="hold">
+        <div class="pie">
+          <div class="pieText4">Verdura</div>
+        </div>
+      </div>
+    </div>
+    <div class="randomPlate__fav">
+      <div class="favIcon">
+        <fa-icon
+          [icon]="solidFaHeart"
+          (click)="saveAsFav()"
+          *ngIf="!isFavorite"
+        >
+        </fa-icon
+        ><span class="tooltiptext">Añadir a favoritos</span>
+      </div>
+      <div class="favIcon">
+        <fa-icon
+          [icon]="regularFaHeart"
+          (click)="deleteFav()"
+          *ngIf="isFavorite"
+        ></fa-icon>
+        <span class="tooltiptext">Eliminar de favoritos</span>
+      </div>
+    </div>
+    <div class="randomPlate__ingredients">
+      <div class="aligned-h">
+        <p>Proteína: {{ randomPlate.protein }}</p>
+        <!-- <select>
         <option value="hola">hola</option>
         <option value="adios">adiós</option>
       </select> -->
-      <button>cambiar</button>
-      <fa-icon
-        [icon]="faBan"
-        (click)="banIngredient(randomPlate.protein, 'proteins')"
-      ></fa-icon>
-    </div>
-    <div class="aligned-h">
-      <p>Cereal: {{ randomPlate.cereal }}</p>
-      <button>cambiar</button>
-      <fa-icon
-        [icon]="faBan"
-        (click)="banIngredient(randomPlate.cereal, 'cereals')"
-      ></fa-icon>
-    </div>
-    <div class="aligned-h">
-      <p>Verdura: {{ randomPlate.vegetable }}</p>
-      <button>cambiar</button>
-      <fa-icon
-        [icon]="faBan"
-        (click)="banIngredient(randomPlate.vegetable, 'vegetables')"
-      ></fa-icon>
-    </div>
-    <div class="aligned-h">
-      <p>Fruta: {{ randomPlate.fruit }}</p>
-      <button>cambiar</button>
-      <fa-icon
-        [icon]="faBan"
-        (click)="banIngredient(randomPlate.fruit, 'fruits')"
-      ></fa-icon>
+        <div>
+          <button>cambiar</button>
+          <fa-icon
+            [icon]="faBan"
+            (click)="banIngredient(randomPlate.protein, 'proteins')"
+          ></fa-icon>
+        </div>
+      </div>
+      <div class="aligned-h">
+        <p>Cereal: {{ randomPlate.cereal }}</p>
+        <div>
+          <button>cambiar</button>
+          <fa-icon
+            [icon]="faBan"
+            (click)="banIngredient(randomPlate.cereal, 'cereals')"
+          ></fa-icon>
+        </div>
+      </div>
+      <div class="aligned-h">
+        <p>Verdura: {{ randomPlate.vegetable }}</p>
+        <div>
+          <button>cambiar</button>
+          <fa-icon
+            [icon]="faBan"
+            (click)="banIngredient(randomPlate.vegetable, 'vegetables')"
+          ></fa-icon>
+        </div>
+      </div>
+      <div class="aligned-h">
+        <p>Fruta: {{ randomPlate.fruit }}</p>
+        <div>
+          <button>cambiar</button>
+          <fa-icon
+            [icon]="faBan"
+            (click)="banIngredient(randomPlate.fruit, 'fruits')"
+          ></fa-icon>
+        </div>
+      </div>
     </div>
   </div>
   <button class="button--circle" (click)="getRandomPlate()">
