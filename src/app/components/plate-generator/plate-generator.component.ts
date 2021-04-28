@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { faHeart as solidFaHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as regularFaHeart } from '@fortawesome/free-regular-svg-icons';
 import { faBan } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-plate-generator',
@@ -31,8 +32,14 @@ export class PlateGeneratorComponent implements OnInit {
   constructor(
     private db: AngularFireDatabase,
     private auth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {
+    // ----GET USER----
+
+    // this.user = userService.getUser();
+    // console.log('plate-generator user', this.user);
+
     this.auth.onAuthStateChanged((user: any) => {
       if (user && user.emailVerified) {
         this.user = user;
@@ -43,6 +50,9 @@ export class PlateGeneratorComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     });
+    console.log('plate-generator user', this.user);
+
+    // ------GET INGREDIENTS FROM DB------
     this.db.database
       .ref('Ingredientes')
       .get()
@@ -92,7 +102,10 @@ export class PlateGeneratorComponent implements OnInit {
       .remove();
   }
 
+  ngOnInit(): void {}
+
   getLength = async (element: string) => {
+    console.log('getLength user', this.user);
     let length = 0;
 
     const snapshot = await this.db.database
@@ -135,7 +148,7 @@ export class PlateGeneratorComponent implements OnInit {
       .ref(`users/${this.user.displayName}/favoritos`)
       .get();
 
-    console.log(snapshot.val());
+    console.log('favorites', snapshot.val());
 
     const isFavorite = snapshot
       .val()
@@ -170,6 +183,9 @@ export class PlateGeneratorComponent implements OnInit {
       .set(type);
   };
 
+  //Todas estas funciones se podrían meter
+  //en el userService?
+
   public saveAsFav = async () => {
     const favoritesLength = await this.getLength('favoritos');
     this.db.database
@@ -199,6 +215,4 @@ export class PlateGeneratorComponent implements OnInit {
       .set(ingredient);
     // this.randomPlate[category] = this.getRandomIngredient(this[category]);
   };
-
-  ngOnInit(): void {}
 }
