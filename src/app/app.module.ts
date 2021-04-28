@@ -13,6 +13,8 @@ import { PlateGeneratorComponent } from './components/plate-generator/plate-gene
 import { RegisterComponent } from './components/register/register.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FavoritesComponent } from './components/favorites/favorites.component';
+import { StoreModule } from '@ngrx/store';
+import { appReducers } from './app.reducers';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,13 @@ import { FavoritesComponent } from './components/favorites/favorites.component';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    StoreModule.forRoot(appReducers, {
+      runtimeChecks: {
+        strictStateImmutability: false,
+        strictActionImmutability: false
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

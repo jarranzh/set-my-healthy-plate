@@ -1,1 +1,6 @@
-<p>favorites works!</p>
+<h2>TUS PLATOS FAVORITOS</h2>
+<p>{{ showPlatosFavoritos }}</p>
+<div *ngIf="showPlatosFavoritos">hay platos</div>
+<ul *ngIf="showPlatosFavoritos">
+  <li *ngFor="let plato of platosFavoritos">{{ plato.cereal }}</li>
+</ul>
