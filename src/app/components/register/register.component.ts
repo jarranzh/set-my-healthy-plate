@@ -1,14 +1,12 @@
-import { AngularFireDatabase } from '@angular/fire/database';
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
-  Validators,
-  FormBuilder
+  Validators
 } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AngularFireModule } from '@angular/fire';
+import { RegisterCredentials } from 'src/app/models/credentials';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -25,11 +23,8 @@ export class RegisterComponent implements OnInit {
   public message = '';
 
   constructor(
-    private auth: AngularFireAuth,
-    private db: AngularFireDatabase,
-    private firebase: AngularFireModule,
-    private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -50,44 +45,11 @@ export class RegisterComponent implements OnInit {
   // Chequear si el userName ya existe en la DB para no dejar crear el usuario
 
   public register = () => {
-    this.auth
-      .createUserWithEmailAndPassword(this.email.value, this.password.value)
-      .then(credential => {
-        console.log('USER registered', credential);
-        this.db.database
-          .ref('users')
-          .child(this.userName.value)
-          .child('email')
-          .set(this.email.value);
-
-        if (credential.user) {
-          credential.user.updateProfile({ displayName: this.userName.value });
-        }
-
-        this.verificarEmail(credential);
-      })
-      .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage + errorCode);
-        // ..
-      });
-  };
-
-  public verificarEmail = (registeredUser: any) => {
-    registeredUser.user
-      .sendEmailVerification()
-      .then(() => {
-        // Email sent.
-        alert(
-          'Please check your inbox. We sent you an email to verify your account'
-        );
-
-        this.router.navigate(['/login']);
-      })
-      .catch(function(error: any) {
-        // An error happened.
-        console.log('an error happened', error);
-      });
+    const credentials: RegisterCredentials = {
+      email: this.email.value,
+      password: this.password.value,
+      userName: this.userName.value
+    };
+    this.authService.register(credentials);
   };
 }

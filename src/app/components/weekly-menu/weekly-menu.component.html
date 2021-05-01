@@ -1,0 +1,14 @@
+<p *ngIf="menu">hay menú</p>
+<div *ngIf="menu">
+  <ul *ngFor="let dayMenu of menu; let i = index">
+    <p>DAY {{ i + 1 }}</p>
+    <li>Proteína: {{ dayMenu.protein }}</li>
+    <li>Cereal: {{ dayMenu.cereal }}</li>
+    <li>Verdura: {{ dayMenu.vegetable }}</li>
+    <li>Fruta: {{ dayMenu.fruit }}</li>
+  </ul>
+</div>
+<div *ngIf="!menu">
+  <h2>Todavía no hemos generado tu menú</h2>
+  <button (click)="createMenu()">GENÉRAME UN MENÚ</button>
+</div>

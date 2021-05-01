@@ -27,16 +27,15 @@
     <div class="randomPlate__fav">
       <div class="favIcon">
         <fa-icon
-          [icon]="solidFaHeart"
+          [icon]="regularFaHeart"
           (click)="saveAsFav()"
           *ngIf="!isFavorite"
-        >
-        </fa-icon
-        ><span class="tooltiptext">Añadir a favoritos</span>
+        ></fa-icon>
+        <span class="tooltiptext">Añadir a favoritos</span>
       </div>
       <div class="favIcon">
         <fa-icon
-          [icon]="regularFaHeart"
+          [icon]="solidFaHeart"
           (click)="deleteFav()"
           *ngIf="isFavorite"
         ></fa-icon>
@@ -54,7 +53,7 @@
           <button>cambiar</button>
           <fa-icon
             [icon]="faBan"
-            (click)="banIngredient(randomPlate.protein, 'proteins')"
+            (click)="banIngredient(randomPlate.protein, 'protein')"
           ></fa-icon>
         </div>
       </div>
@@ -64,7 +63,7 @@
           <button>cambiar</button>
           <fa-icon
             [icon]="faBan"
-            (click)="banIngredient(randomPlate.cereal, 'cereals')"
+            (click)="banIngredient(randomPlate.cereal, 'cereal')"
           ></fa-icon>
         </div>
       </div>
@@ -74,7 +73,7 @@
           <button>cambiar</button>
           <fa-icon
             [icon]="faBan"
-            (click)="banIngredient(randomPlate.vegetable, 'vegetables')"
+            (click)="banIngredient(randomPlate.vegetable, 'vegetable')"
           ></fa-icon>
         </div>
       </div>
@@ -84,7 +83,7 @@
           <button>cambiar</button>
           <fa-icon
             [icon]="faBan"
-            (click)="banIngredient(randomPlate.fruit, 'fruits')"
+            (click)="banIngredient(randomPlate.fruit, 'fruit')"
           ></fa-icon>
         </div>
       </div>
@@ -150,7 +149,7 @@
     </form>
   </div>
   <div class="section">
-    <button type="button" (click)="setMenu()">
+    <button type="button" (click)="getMenu()">
       Get me a menu
     </button>
     <div *ngFor="let day of menu; let i = index">

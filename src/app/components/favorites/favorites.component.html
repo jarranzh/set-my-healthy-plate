@@ -1,6 +1,22 @@
 <h2>TUS PLATOS FAVORITOS</h2>
-<p>{{ showPlatosFavoritos }}</p>
-<div *ngIf="showPlatosFavoritos">hay platos</div>
-<ul *ngIf="showPlatosFavoritos">
-  <li *ngFor="let plato of platosFavoritos">{{ plato.cereal }}</li>
-</ul>
+<div *ngIf="!platosFavoritos">
+  ¡Vaya! Parece que no tienes ningún plato favorito aún. Prueba a añadir uno
+  desde el generador de platos
+</div>
+<div *ngIf="platosFavoritos">
+  <ul *ngFor="let plato of platosFavoritos; let i = index">
+    <p>Plato {{ i + 1 }}</p>
+    <li>Cereal: {{ plato.cereal }}</li>
+    <li>Proteina: {{ plato.protein }}</li>
+    <li>Verdura: {{ plato.vegetable }}</li>
+    <li>Fruta: {{ plato.fruit }}</li>
+    <div class="favIcon">
+      <fa-icon
+        [icon]="solidFaHeart"
+        (click)="deleteFav(plato)"
+        *ngIf="userService.getIsFavorite(plato)"
+      ></fa-icon>
+      <span class="tooltiptext">Eliminar de favoritos</span>
+    </div>
+  </ul>
+</div>
