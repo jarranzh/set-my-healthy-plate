@@ -1,16 +1,17 @@
 import { UserService } from './user.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
+import { Plate } from '../models/plate';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlateService {
-  public proteins: any;
-  public vegetables: any;
-  public fruits: any;
-  public cereals: any;
-  public randomPlate: any;
+  public proteins!: string[];
+  public vegetables!: string[];
+  public fruits!: string[];
+  public cereals!: string[];
+  public randomPlate!: Plate;
   public user: any;
 
   isFavorite = false;
@@ -23,26 +24,32 @@ export class PlateService {
     this.getDBIngredients();
   }
 
-  getDBIngredients = () => {
-    this.db.database
-      .ref('Ingredientes')
-      .get()
-      .then((snapshot: any) => {
-        //      this.getBannedIngredients();
-        // TODO: remove from list of ingredients, the banned ingredients
-        this.proteins = Object.keys(snapshot.val()).filter(
-          key => snapshot.val()[key] === 'protein'
-        );
-        this.vegetables = Object.keys(snapshot.val()).filter(
-          key => snapshot.val()[key] === 'vegetable'
-        );
-        this.fruits = Object.keys(snapshot.val()).filter(
-          key => snapshot.val()[key] === 'fruit'
-        );
-        this.cereals = Object.keys(snapshot.val()).filter(
-          key => snapshot.val()[key] === 'cereal'
-        );
-      });
+  getDBIngredients = async () => {
+    const snapshot = await this.db.database.ref('Ingredientes').get();
+
+    if (snapshot) {
+      //      this.getBannedIngredients();
+      // TODO: remove from list of ingredients, the banned ingredients
+      this.proteins = Object.keys(snapshot.val()).filter(
+        key => snapshot.val()[key] === 'protein'
+      );
+      this.vegetables = Object.keys(snapshot.val()).filter(
+        key => snapshot.val()[key] === 'vegetable'
+      );
+      this.fruits = Object.keys(snapshot.val()).filter(
+        key => snapshot.val()[key] === 'fruit'
+      );
+      this.cereals = Object.keys(snapshot.val()).filter(
+        key => snapshot.val()[key] === 'cereal'
+      );
+    }
+
+    return {
+      proteins: this.proteins,
+      vegetables: this.vegetables,
+      cereals: this.cereals,
+      fruits: this.fruits
+    };
 
     // this.listenOnChanges();
   };
@@ -106,12 +113,20 @@ export class PlateService {
     const cereal = this.getRandomIngredient('cereal');
     const fruit = this.getRandomIngredient('fruit');
     const vegetable = this.getRandomIngredient('vegetable');
-    this.randomPlate = {
+    const isFavorite = await this.userService.getIsFavorite({
       protein: protein,
       cereal: cereal,
       fruit: fruit,
       vegetable: vegetable
+    });
+    this.randomPlate = {
+      protein: protein,
+      cereal: cereal,
+      fruit: fruit,
+      vegetable: vegetable,
+      isFavorite: isFavorite
     };
+    console.log('1ST CALL TO ISFAVORITE');
     this.isFavorite = await this.userService.getIsFavorite(this.randomPlate);
     return this.randomPlate;
   };

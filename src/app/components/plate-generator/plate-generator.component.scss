@@ -1,7 +1,16 @@
-.aligned-h {
+@import '../../../variables';
+
+.ingredientItem {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: space-between;
+
+  &__info {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 16px;
+  }
 }
 
 // .favIcon > svg {
@@ -29,10 +38,13 @@
 
   &__ingredients {
     text-align: left;
+    border: 0.25rem solid $blue;
+    border-radius: 2rem;
+    padding: 1rem 2rem;
   }
 }
 
-//--
+//-- PIE GRAPH --
 
 .pieContainer {
   height: 150px;

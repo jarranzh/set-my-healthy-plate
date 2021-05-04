@@ -1,0 +1,26 @@
+<mat-dialog-content>
+  <mat-radio-group
+    aria-label="Select an option"
+    class="modalContent__radioGroup"
+    [(ngModel)]="selectedData"
+  >
+    <mat-radio-button *ngFor="let item of data.dataset" value="{{ item }}">
+      {{ item }}
+    </mat-radio-button>
+  </mat-radio-group>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [mat-dialog-close]="selectedData">Ok</button>
+</mat-dialog-actions>
+<!-- <div >
+  <mat-checkbox class="example-margin"></mat-checkbox>
+</div> -->
+<!-- <select>
+
+  <option selected disabled hidden>Cambia de ingrediente</option>
+  <option *ngFor="let fruit of ingredients.fruits" value="{{ fruit }}">{{
+    fruit
+  }}</option>
+</select> -->

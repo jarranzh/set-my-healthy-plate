@@ -1,0 +1,9 @@
+.platosFavoritos {
+  &__plato {
+    display: flex;
+    align-items: center;
+    &__item {
+      padding-right: 1rem;
+    }
+  }
+}

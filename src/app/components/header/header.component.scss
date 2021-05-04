@@ -95,6 +95,7 @@
   li {
     padding: 0.5rem 0;
     font-size: 1.5rem;
+    line-height: 1;
   }
 
   &:hover {
@@ -132,6 +133,7 @@
 
     &__link {
       color: $blue;
+      font-size: 16px;
       font-weight: 100;
       letter-spacing: 2px;
       text-decoration: none;

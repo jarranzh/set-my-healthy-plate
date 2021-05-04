@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
       .signOut()
       .then(() => {
         localStorage.removeItem('user');
+        localStorage.removeItem('favorites');
         console.log('Usuario ha cerrado sesión');
       })
       .catch(error => {

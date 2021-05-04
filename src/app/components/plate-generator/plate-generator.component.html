@@ -25,66 +25,162 @@
       </div>
     </div>
     <div class="randomPlate__fav">
-      <div class="favIcon">
-        <fa-icon
-          [icon]="regularFaHeart"
-          (click)="saveAsFav()"
-          *ngIf="!isFavorite"
-        ></fa-icon>
-        <span class="tooltiptext">Añadir a favoritos</span>
-      </div>
-      <div class="favIcon">
-        <fa-icon
-          [icon]="solidFaHeart"
-          (click)="deleteFav()"
-          *ngIf="isFavorite"
-        ></fa-icon>
-        <span class="tooltiptext">Eliminar de favoritos</span>
-      </div>
+      <button
+        (click)="saveAsFav()"
+        *ngIf="!isFavorite"
+        matTooltip="Añadir a favoritos"
+      >
+        <div>
+          <fa-icon [icon]="regularFaHeart"></fa-icon>
+        </div>
+      </button>
+      <button
+        (click)="deleteFav()"
+        *ngIf="isFavorite"
+        matTooltip="Eliminar de favoritos"
+      >
+        <div>
+          <fa-icon [icon]="solidFaHeart"></fa-icon>
+        </div>
+      </button>
     </div>
     <div class="randomPlate__ingredients">
-      <div class="aligned-h">
-        <p>Proteína: {{ randomPlate.protein }}</p>
-        <!-- <select>
-        <option value="hola">hola</option>
-        <option value="adios">adiós</option>
-      </select> -->
+      <div class="ingredientItem">
+        <p class="ingredientItem__info">Proteína: {{ randomPlate.protein }}</p>
         <div>
-          <button>cambiar</button>
-          <fa-icon
+          <button
+            class="button--sm"
+            mat-raised-button
+            (click)="openDialog(ingredients.proteins, 'protein')"
+          >
+            <mat-icon aria-hidden="false" aria-label="Change ingredient icon"
+              >change_circle</mat-icon
+            >
+          </button>
+          <!-- <select (change)="modifyIngredient($event, 'protein')">
+            <option selected disabled hidden>Cambia de ingrediente</option>
+            <option
+              *ngFor="let protein of ingredients.proteins"
+              value="{{ protein }}"
+              >{{ protein }}</option
+            >
+          </select> -->
+          <button
+            class="button--sm"
+            (click)="banIngredient(randomPlate.protein, 'protein')"
+          >
+            <mat-icon aria-hidden="false" aria-label="Ban ingredient icon">
+              block</mat-icon
+            >
+          </button>
+
+          <!-- <fa-icon
             [icon]="faBan"
             (click)="banIngredient(randomPlate.protein, 'protein')"
-          ></fa-icon>
+          ></fa-icon> -->
         </div>
       </div>
-      <div class="aligned-h">
-        <p>Cereal: {{ randomPlate.cereal }}</p>
+      <div class="ingredientItem">
+        <p class="ingredientItem__info">Cereal: {{ randomPlate.cereal }}</p>
         <div>
-          <button>cambiar</button>
+          <button
+            class="button--sm"
+            mat-raised-button
+            (click)="openDialog(ingredients.cereals, 'cereal')"
+          >
+            <mat-icon aria-hidden="false" aria-label="Change ingredient icon"
+              >change_circle</mat-icon
+            >
+          </button>
+          <!-- <select (change)="modifyIngredient($event, 'cereal')">
+            <option selected disabled hidden>Cambia de ingrediente</option>
+            <option
+              *ngFor="let cereal of ingredients.cereals"
+              value="{{ cereal }}"
+              >{{ cereal }}</option
+            >
+          </select> 
           <fa-icon
             [icon]="faBan"
             (click)="banIngredient(randomPlate.cereal, 'cereal')"
-          ></fa-icon>
+          ></fa-icon>-->
+
+          <button
+            class="button--sm"
+            (click)="banIngredient(randomPlate.cereal, 'cereal')"
+          >
+            <mat-icon aria-hidden="false" aria-label="Ban ingredient icon">
+              block</mat-icon
+            >
+          </button>
         </div>
       </div>
-      <div class="aligned-h">
-        <p>Verdura: {{ randomPlate.vegetable }}</p>
+      <div class="ingredientItem">
+        <p class="ingredientItem__info">Verdura: {{ randomPlate.vegetable }}</p>
         <div>
-          <button>cambiar</button>
+          <button
+            class="button--sm"
+            mat-raised-button
+            (click)="openDialog(ingredients.vegetables, 'vegetable')"
+          >
+            <mat-icon aria-hidden="false" aria-label="Change ingredient icon"
+              >change_circle</mat-icon
+            >
+          </button>
+          <!-- <select (change)="modifyIngredient($event, 'vegetable')">
+            <option selected disabled hidden>Cambia de ingrediente</option>
+            <option
+              *ngFor="let vegetable of ingredients.vegetables"
+              value="{{ vegetable }}"
+              >{{ vegetable }}</option
+            >
+          </select> 
           <fa-icon
             [icon]="faBan"
             (click)="banIngredient(randomPlate.vegetable, 'vegetable')"
-          ></fa-icon>
+          ></fa-icon>-->
+          <button
+            class="button--sm"
+            (click)="banIngredient(randomPlate.vegetable, 'vegetable')"
+          >
+            <mat-icon aria-hidden="false" aria-label="Ban ingredient icon">
+              block</mat-icon
+            >
+          </button>
         </div>
       </div>
-      <div class="aligned-h">
-        <p>Fruta: {{ randomPlate.fruit }}</p>
+      <div class="ingredientItem">
+        <p class="ingredientItem__info">Fruta: {{ randomPlate.fruit }}</p>
         <div>
-          <button>cambiar</button>
+          <button
+            class="button--sm"
+            mat-raised-button
+            (click)="openDialog(ingredients.fruits, 'fruit')"
+          >
+            <mat-icon aria-hidden="false" aria-label="Change ingredient icon"
+              >change_circle</mat-icon
+            >
+          </button>
+          <!-- <select (change)="modifyIngredient($event, 'fruit')">
+            <option selected disabled hidden>Cambia de ingrediente</option>
+            <option
+              *ngFor="let fruit of ingredients.fruits"
+              value="{{ fruit }}"
+              >{{ fruit }}</option
+            >
+          </select> 
           <fa-icon
             [icon]="faBan"
             (click)="banIngredient(randomPlate.fruit, 'fruit')"
-          ></fa-icon>
+          ></fa-icon>-->
+          <button
+            class="button--sm"
+            (click)="banIngredient(randomPlate.fruit, 'fruit')"
+          >
+            <mat-icon aria-hidden="false" aria-label="Ban ingredient icon">
+              block</mat-icon
+            >
+          </button>
         </div>
       </div>
     </div>

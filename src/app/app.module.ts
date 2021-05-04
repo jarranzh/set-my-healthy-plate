@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EffectsModule } from '@ngrx/effects';
@@ -19,6 +19,15 @@ import { LoginComponent } from './components/login/login.component';
 import { PlateGeneratorComponent } from './components/plate-generator/plate-generator.component';
 import { RegisterComponent } from './components/register/register.component';
 import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { ModalContentComponent } from './components/modal-content/modal-content.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -28,7 +37,8 @@ import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.compon
     PlateGeneratorComponent,
     HeaderComponent,
     FavoritesComponent,
-    WeeklyMenuComponent
+    WeeklyMenuComponent,
+    ModalContentComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +46,16 @@ import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.compon
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    FormsModule,
     ReactiveFormsModule,
     FontAwesomeModule,
+    MatCardModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
     StoreModule.forRoot(appReducers, {
       runtimeChecks: {
         strictStateImmutability: false,
@@ -49,7 +67,8 @@ import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.compon
       logOnly: environment.production
     }),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-    EffectsModule.forRoot(EffectsArray)
+    EffectsModule.forRoot(EffectsArray),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

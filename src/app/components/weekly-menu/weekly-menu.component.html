@@ -1,14 +1,92 @@
-<p *ngIf="menu">hay menú</p>
-<div *ngIf="menu">
-  <ul *ngFor="let dayMenu of menu; let i = index">
-    <p>DAY {{ i + 1 }}</p>
+<h2>TU MENÚ SEMANAL</h2>
+<mat-spinner *ngIf="isLoading" color="accent"></mat-spinner>
+<div *ngIf="menu && !isLoading" class="menu">
+  <div class="menu__info">
+    <mat-card
+      class="menu__info__day"
+      *ngFor="let dayMenu of menu; let i = index"
+    >
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>DÍA {{ i + 1 }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul>
+          <li>Proteína: {{ dayMenu.protein }}</li>
+          <li>Cereal: {{ dayMenu.cereal }}</li>
+          <li>Verdura: {{ dayMenu.vegetable }}</li>
+          <li>Fruta: {{ dayMenu.fruit }}</li>
+        </ul>
+        <button
+          (click)="saveAsFav(dayMenu)"
+          *ngIf="!dayMenu.isFavorite"
+          matTooltip="Añadir a favoritos"
+        >
+          <div>
+            <fa-icon [icon]="regularFaHeart"></fa-icon>
+          </div>
+        </button>
+        <button
+          (click)="deleteFav(dayMenu, i)"
+          *ngIf="dayMenu.isFavorite"
+          matTooltip="Eliminar de favoritos"
+        >
+          <div>
+            <fa-icon [icon]="solidFaHeart"></fa-icon>
+          </div>
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- <table>
+    <thead>
+      <tr>
+        <th *ngFor="let dayMenu of menu; let i = index">DÍA {{ i + 1 }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td *ngFor="let dayMenu of menu; let i = index">
+          <ul>
+            <li>Proteína: {{ dayMenu.protein }}</li>
+            <li>Cereal: {{ dayMenu.cereal }}</li>
+            <li>Verdura: {{ dayMenu.vegetable }}</li>
+            <li>Fruta: {{ dayMenu.fruit }}</li>
+          </ul>
+          <div class="favIcon">
+            <fa-icon
+              [icon]="solidFaHeart"
+              (click)="deleteFav(dayMenu, i)"
+              *ngIf="dayMenu.isFavorite"
+            ></fa-icon>
+            <span class="tooltiptext">Eliminar de favoritos</span>
+          </div>
+          <div class="favIcon">
+            <fa-icon
+              [icon]="regularFaHeart"
+              (click)="saveAsFav(dayMenu)"
+              *ngIf="!dayMenu.isFavorite"
+            ></fa-icon>
+            <span class="tooltiptext">Añadir a favoritos</span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table> -->
+  <button class="menu__button" (click)="createMenu()">
+    GENÉRAME UN NUEVO MENÚ
+  </button>
+
+  <!-- <ul *ngFor="let dayMenu of menu; let i = index">
+    <p>DÍA {{ i + 1 }}</p>
     <li>Proteína: {{ dayMenu.protein }}</li>
     <li>Cereal: {{ dayMenu.cereal }}</li>
     <li>Verdura: {{ dayMenu.vegetable }}</li>
     <li>Fruta: {{ dayMenu.fruit }}</li>
-  </ul>
+  </ul> -->
 </div>
-<div *ngIf="!menu">
+<div *ngIf="!menu && !isLoading">
   <h2>Todavía no hemos generado tu menú</h2>
   <button (click)="createMenu()">GENÉRAME UN MENÚ</button>
 </div>

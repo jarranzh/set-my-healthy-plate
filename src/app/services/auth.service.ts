@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -13,7 +14,8 @@ export class AuthService {
   constructor(
     private auth: AngularFireAuth,
     private router: Router,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    private userService: UserService
   ) {}
 
   login = (credentials: Credentials) => {
@@ -30,6 +32,8 @@ export class AuthService {
         if (user.user) {
           if (user.user.emailVerified) {
             localStorage.setItem('user', JSON.stringify(user.user));
+            this.userService.getUser();
+            //this.userService.getFavorites();
             this.router.navigate(['/plate-generator']);
           } else {
             alert('This email is not verified yet. Please check your inbox');

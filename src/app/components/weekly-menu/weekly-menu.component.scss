@@ -1,0 +1,25 @@
+@import '../../../variables';
+
+.menu {
+  display: flex;
+  flex-direction: column;
+
+  &__info {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__day {
+      background-color: $secondary-green;
+      color: $blue;
+      margin: 0.5rem 0;
+      max-width: 80%;
+    }
+  }
+
+  &__button {
+    width: fit-content;
+  }
+}
+
+@media screen and (min-width: 425px) {
+}
