@@ -10,6 +10,7 @@ import { faHome } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  public isMenuOpen = false;
   public routeUrl!: string;
   public faHome = faHome;
 

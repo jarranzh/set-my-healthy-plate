@@ -1,70 +1,88 @@
-<header class="nav">
-  <nav role="navigation">
+<header class="header">
+  <nav role="header__nav">
     <!-- Mobile navigation -->
-    <div class="menuToggle">
-      <input type="checkbox" class="menuToggle__input" />
-
-      <span class="input__item"></span>
-      <span class="input__item"></span>
-      <span class="input__item"></span>
-
-      <ul class="menuToggle__sideMenu">
-        <a routerLink="#" class="sideMenu__item"
-          ><li>¿Qué es SetMyHealthyPlate?</li></a
-        >
-        <a routerLink="/favorites" class="sideMenu__item"><li>Favoritos</li></a>
-        <a routerLink="/weekly-menu" class="sideMenu__item"
-          ><li>Menú semanal</li></a
-        >
-        <a routerLink="#" class="sideMenu__item"><li>Lista de la compra</li></a>
-        <a routerLink="#" class="sideMenu__item"><li>Mi perfil</li></a>
-        <a routerLink="#" class="sideMenu__item" (click)="logOut()"
-          ><li>Logout</li></a
-        >
-      </ul>
-    </div>
+    <mat-drawer-container class="menuToggle" hasBackdrop>
+      <mat-drawer #drawer mode="over" class="menuToggle__sideMenu">
+        <ul class="sideMenu">
+          <a routerLink="#" class="sideMenu__item"
+            ><li>¿Qué es SetMyHealthyPlate?</li></a
+          >
+          <a
+            routerLink="/favorites"
+            (click)="drawer.toggle()"
+            class="sideMenu__item"
+            ><li>Favoritos</li></a
+          >
+          <a
+            routerLink="/weekly-menu"
+            (click)="drawer.toggle()"
+            class="sideMenu__item"
+            ><li>Menú semanal</li></a
+          >
+          <a routerLink="#" (click)="drawer.toggle()" class="sideMenu__item"
+            ><li>Lista de la compra</li></a
+          >
+          <a routerLink="#" (click)="drawer.toggle()" class="sideMenu__item"
+            ><li>Mi perfil</li></a
+          >
+          <a
+            routerLink="#"
+            (click)="drawer.toggle()"
+            class="sideMenu__item"
+            (click)="logOut()"
+            ><li>Logout</li></a
+          >
+        </ul>
+      </mat-drawer>
+      <mat-drawer-content>
+        <div class="header__nav__show">
+          <button mat-raised-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <img
+            class="logo"
+            src="../../../assets/logo.png"
+            alt="logo"
+            (click)="goHome()"
+          />
+        </div>
+        <div class="mainContent">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-drawer-content>
+    </mat-drawer-container>
 
     <!-- Desktop navigation -->
-    <ul class="nav__list">
-      <li>
-        <a class="nav__list__link" routerLink="#">¿Qué es SetMyHealthyPlate?</a>
-      </li>
-      <li><a class="nav__list__link" routerLink="/favorites">Favoritos</a></li>
-      <li>
-        <a class="nav__list__link" routerLink="/weekly-menu">Menú semanal</a>
-      </li>
-      <li><a class="nav__list__link" routerLink="#">Lista de la compra</a></li>
-      <li><a class="nav__list__link" routerLink="#">Mi perfil</a></li>
-      <li>
-        <a class="nav__list__link" routerLink="#" (click)="logOut()">Logout</a>
-      </li>
-    </ul>
+    <div class="desktopNav">
+      <ul class="nav__list">
+        <li>
+          <a class="nav__list__link" routerLink="#"
+            >¿Qué es SetMyHealthyPlate?</a
+          >
+        </li>
+        <li>
+          <a class="nav__list__link" routerLink="/favorites">Favoritos</a>
+        </li>
+        <li>
+          <a class="nav__list__link" routerLink="/weekly-menu">Menú semanal</a>
+        </li>
+        <li>
+          <a class="nav__list__link" routerLink="#">Lista de la compra</a>
+        </li>
+        <li><a class="nav__list__link" routerLink="#">Mi perfil</a></li>
+        <li>
+          <a class="nav__list__link" routerLink="#" (click)="logOut()"
+            >Logout</a
+          >
+        </li>
+      </ul>
+      <img
+        class="logo"
+        src="../../../assets/logo.png"
+        alt="logo"
+        (click)="goHome()"
+      />
+    </div>
   </nav>
-  <img
-    class="logo"
-    src="../../../assets/logo.png"
-    alt="logo"
-    (click)="goHome()"
-  />
+  s
 </header>
-
-<!-- <header class="nav">
-  <img
-    class="nav__list__link--logo"
-    src="../../../assets/logo.png"
-    alt="logo"
-    (click)="goHome()"
-  />
-  <nav class="nav__list">
-    <ul>
-      <li>
-        <a class="nav__list__link" routerLink="#">¿Qué es SetMyHealthyPlate?</a>
-      </li>
-      <li><a class="nav__list__link" routerLink="/favorites">Favoritos</a></li>
-      <li><a class="nav__list__link" routerLink="#">Menú semanal</a></li>
-      <li><a class="nav__list__link" routerLink="#">Lista de la compra</a></li>
-      <li><a class="nav__list__link" routerLink="#">Mi perfil</a></li>
-      <li><a class="nav__list__link" routerLink="#" (click)="logOut()">Logout</a></li>
-    </ul>
-  </nav>
-</header> -->
