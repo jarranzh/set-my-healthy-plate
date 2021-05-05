@@ -90,4 +90,20 @@ export class AuthService {
         console.log('an error happened', error);
       });
   };
+
+  logOut = () => {
+    this.auth
+      .signOut()
+      .then(() => {
+        localStorage.removeItem('user');
+        localStorage.removeItem('favorites');
+        console.log('Usuario ha cerrado sesión');
+        this.router.navigate(['/login']);
+      })
+      .catch(error => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(errorMessage);
+      });
+  };
 }
