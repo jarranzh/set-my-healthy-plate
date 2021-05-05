@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { faHeart as solidFaHeart } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favorites',
@@ -13,8 +14,15 @@ export class FavoritesComponent implements OnInit {
   public user: any;
   public solidFaHeart = solidFaHeart;
 
-  constructor(public userService: UserService) {
-    this.getFavoritos();
+  constructor(public userService: UserService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.user = this.userService.getUser();
+    if (!this.user) {
+      this.router.navigate(['/login']);
+    } else {
+      this.getFavoritos();
+    }
   }
 
   getFavoritos = async () => {
@@ -29,6 +37,4 @@ export class FavoritesComponent implements OnInit {
       this.getFavoritos();
     });
   };
-
-  ngOnInit(): void {}
 }

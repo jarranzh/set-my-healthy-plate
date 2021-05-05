@@ -4,7 +4,7 @@
     <mat-drawer-container class="menuToggle" hasBackdrop>
       <mat-drawer #drawer mode="over" class="menuToggle__sideMenu">
         <ul class="sideMenu">
-          <a routerLink="#" class="sideMenu__item"
+          <a routerLink="/" class="sideMenu__item"
             ><li>¿Qué es SetMyHealthyPlate?</li></a
           >
           <a
@@ -19,14 +19,14 @@
             class="sideMenu__item"
             ><li>Menú semanal</li></a
           >
-          <a routerLink="#" (click)="drawer.toggle()" class="sideMenu__item"
+          <a routerLink="/" (click)="drawer.toggle()" class="sideMenu__item"
             ><li>Lista de la compra</li></a
           >
-          <a routerLink="#" (click)="drawer.toggle()" class="sideMenu__item"
+          <a routerLink="/" (click)="drawer.toggle()" class="sideMenu__item"
             ><li>Mi perfil</li></a
           >
           <a
-            routerLink="#"
+            routerLink="/"
             (click)="drawer.toggle()"
             class="sideMenu__item"
             (click)="logOut()"
@@ -56,7 +56,7 @@
     <div class="desktopNav">
       <ul class="nav__list">
         <li>
-          <a class="nav__list__link" routerLink="#"
+          <a class="nav__list__link" routerLink="/"
             >¿Qué es SetMyHealthyPlate?</a
           >
         </li>
@@ -67,11 +67,11 @@
           <a class="nav__list__link" routerLink="/weekly-menu">Menú semanal</a>
         </li>
         <li>
-          <a class="nav__list__link" routerLink="#">Lista de la compra</a>
+          <a class="nav__list__link" routerLink="/">Lista de la compra</a>
         </li>
-        <li><a class="nav__list__link" routerLink="#">Mi perfil</a></li>
+        <li><a class="nav__list__link" routerLink="/">Mi perfil</a></li>
         <li>
-          <a class="nav__list__link" routerLink="#" (click)="logOut()"
+          <a class="nav__list__link" routerLink="/" (click)="logOut()"
             >Logout</a
           >
         </li>

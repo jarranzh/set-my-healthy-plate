@@ -4,6 +4,7 @@ import { PlateService } from 'src/app/services/plate.service';
 import { faHeart as regularFaHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as solidFaHeart } from '@fortawesome/free-solid-svg-icons';
 import { Plate } from 'src/app/models/plate';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-weekly-menu',
@@ -15,15 +16,22 @@ export class WeeklyMenuComponent implements OnInit {
   public menu: any;
   public solidFaHeart = solidFaHeart;
   public regularFaHeart = regularFaHeart;
+  public user: any;
 
   constructor(
     private userService: UserService,
-    private plateService: PlateService
+    private plateService: PlateService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.getUserMenu();
-    this.userService.getFavorites();
+    this.user = this.userService.getUser();
+    if (!this.user) {
+      this.router.navigate(['/login']);
+    } else {
+      this.getUserMenu();
+      this.userService.getFavorites();
+    }
   }
 
   getUserMenu = async () => {

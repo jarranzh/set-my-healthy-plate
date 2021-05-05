@@ -46,7 +46,7 @@
 
     <div>
       <p *ngIf="message" style="color: red;">{{ message }}</p>
-      <button type="submit">ACCEDER</button>
+      <button type="submit" [disabled]="!loginForm.valid">ACCEDER</button>
     </div>
   </form>
 
