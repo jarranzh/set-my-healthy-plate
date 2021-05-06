@@ -4,7 +4,7 @@
     <mat-drawer-container class="menuToggle" hasBackdrop>
       <mat-drawer #drawer mode="over" class="menuToggle__sideMenu">
         <ul class="sideMenu">
-          <a routerLink="/" class="sideMenu__item"
+          <a routerLink="/" (click)="drawer.toggle()" class="sideMenu__item"
             ><li>¿Qué es SetMyHealthyPlate?</li></a
           >
           <a
@@ -22,6 +22,12 @@
           <a routerLink="/" (click)="drawer.toggle()" class="sideMenu__item"
             ><li>Lista de la compra</li></a
           >
+          <a
+            routerLink="/not-allowed-ingredients"
+            (click)="drawer.toggle()"
+            class="sideMenu__item"
+            ><li>Alimentos no permitidos</li></a
+          >
           <a routerLink="/" (click)="drawer.toggle()" class="sideMenu__item"
             ><li>Mi perfil</li></a
           >
@@ -34,9 +40,9 @@
           >
         </ul>
       </mat-drawer>
-      <mat-drawer-content>
-        <div class="header__nav__show">
-          <button mat-raised-button (click)="drawer.toggle()">
+      <mat-drawer-content class="content">
+        <div class="navBar">
+          <button class="navBar__button" (click)="drawer.toggle()">
             <mat-icon>menu</mat-icon>
           </button>
           <img
@@ -68,6 +74,11 @@
         </li>
         <li>
           <a class="nav__list__link" routerLink="/">Lista de la compra</a>
+        </li>
+        <li>
+          <a class="nav__list__link" routerLink="/not-allowed-ingredients"
+            >Alimentos no permitidos</a
+          >
         </li>
         <li><a class="nav__list__link" routerLink="/">Mi perfil</a></li>
         <li>

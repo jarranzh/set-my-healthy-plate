@@ -27,13 +27,11 @@ export class AuthService {
           'bienvenido:',
           user.user ? user.user.displayName : 'no displayname'
         );
-        //this.userLogged = user.user;
 
         if (user.user) {
           if (user.user.emailVerified) {
             localStorage.setItem('user', JSON.stringify(user.user));
             this.userService.getUser();
-            //this.userService.getFavorites();
             this.router.navigate(['/plate-generator']);
           } else {
             alert('This email is not verified yet. Please check your inbox');

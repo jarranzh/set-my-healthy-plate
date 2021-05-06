@@ -29,6 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { NotAllowedIngredientsComponent } from './components/not-allowed-ingredients/not-allowed-ingredients.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     HeaderComponent,
     FavoritesComponent,
     WeeklyMenuComponent,
-    ModalContentComponent
+    ModalContentComponent,
+    NotAllowedIngredientsComponent
   ],
   imports: [
     BrowserModule,

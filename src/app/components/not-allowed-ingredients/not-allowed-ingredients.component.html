@@ -1,0 +1,21 @@
+<div class="centered">
+  <mat-spinner *ngIf="isLoading" color="accent"></mat-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <h2>INGREDIENTES PROHIBIDOS</h2>
+  <p>
+    Estos son los ingredientes que has decidido eliminar de las sugerencias de
+    platos.
+  </p>
+  <p *ngIf="!bannedIngredients">
+    No tienes ningún alimento no permitido. Si quieres eliminar algún
+    ingrediente de las sugerencias de platos, puedez hacerlo desde el generador
+    de platos
+  </p>
+
+  <div *ngIf="bannedIngredients">
+    <div *ngFor="let ingredient of bannedIngredients | keyvalue">
+      <mat-checkbox class="checkbox">{{ ingredient.key }}</mat-checkbox>
+    </div>
+  </div>
+</div>

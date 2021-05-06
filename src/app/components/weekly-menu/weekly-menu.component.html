@@ -1,5 +1,5 @@
 <h2>TU MENÚ SEMANAL</h2>
-<mat-spinner *ngIf="isLoading" color="accent"></mat-spinner>
+<mat-spinner *ngIf="isLoading" color="accent" class="centered"></mat-spinner>
 <div *ngIf="menu && !isLoading" class="menu">
   <div class="menu__info">
     <mat-card
@@ -7,10 +7,10 @@
       *ngFor="let dayMenu of menu; let i = index"
     >
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
+        <div mat-card-avatar></div>
         <mat-card-title>DÍA {{ i + 1 }}</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
+      <mat-card-content class="dayContent">
         <ul>
           <li>Proteína: {{ dayMenu.protein }}</li>
           <li>Cereal: {{ dayMenu.cereal }}</li>

@@ -103,10 +103,12 @@
   border-radius: 100%;
   clip: rect(0px, 150px, 150px, 75px);
 }
+.pie {
+  font-weight: bold;
+}
 
 #pieSlice1 .pie {
-  color: red;
-  background-color: #1b458b;
+  background-color: #00949c;
   transform: rotate(90deg);
 }
 
@@ -115,7 +117,7 @@
 }
 
 #pieSlice2 .pie {
-  background-color: #0a0;
+  background-color: #00bb9c;
   transform: rotate(90deg);
 }
 
@@ -124,7 +126,7 @@
 }
 
 #pieSlice3 .pie {
-  background-color: #f80;
+  background-color: #00df84;
   transform: rotate(45deg);
 }
 
@@ -133,6 +135,6 @@
 }
 
 #pieSlice4 .pie {
-  background-color: #08f;
+  background-color: #8fff55;
   transform: rotate(135deg);
 }

@@ -59,15 +59,6 @@ export class PlateGeneratorComponent implements OnInit {
     return ingredients;
   };
 
-  getBannedIngredients = () => {
-    this.db.database
-      .ref(`users/${this.user.displayName}/prohibidos/`)
-      .get()
-      .then((snapshot: any) => {
-        console.log(snapshot.val());
-      });
-  };
-
   public getRandomIngredient = (category: string) => {
     return this.plateService.getRandomIngredient(category);
   };
@@ -103,7 +94,11 @@ export class PlateGeneratorComponent implements OnInit {
 
   public banIngredient = async (ingredient: string, category: string) => {
     this.userService.banIngredient(ingredient, category);
-    this.randomPlate[category] = this.getRandomIngredient(category);
+    this.plateService
+      .updateIngredientsLists()
+      .then(
+        () => (this.randomPlate[category] = this.getRandomIngredient(category))
+      );
   };
 
   public modifyIngredient = (event: any, category: string) => {

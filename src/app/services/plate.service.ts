@@ -11,6 +11,11 @@ export class PlateService {
   public vegetables!: string[];
   public fruits!: string[];
   public cereals!: string[];
+  public filteredProteins!: string[];
+  public filteredVegetables!: string[];
+  public filteredFruits!: string[];
+  public filteredCereals!: string[];
+
   public randomPlate!: Plate;
   public user: any;
 
@@ -21,7 +26,14 @@ export class PlateService {
     private userService: UserService
   ) {
     this.user = this.userService.getUser();
-    this.getDBIngredients();
+    this.getDBIngredients().then(async () => {
+      await this.updateIngredientsLists();
+
+      console.log('FINAL PROTEINS', this.filteredProteins);
+      console.log('FINAL VEGETABLES', this.filteredVegetables);
+      console.log('FINAL CEREALS', this.filteredCereals);
+      console.log('FINAL FRUITS', this.filteredFruits);
+    });
   }
 
   getDBIngredients = async () => {
@@ -44,14 +56,64 @@ export class PlateService {
       );
     }
 
+    // this.listenOnChanges();
+
     return {
       proteins: this.proteins,
       vegetables: this.vegetables,
       cereals: this.cereals,
       fruits: this.fruits
     };
+  };
 
-    // this.listenOnChanges();
+  updateIngredientsLists = async (): Promise<any> => {
+    let filteredIngredients = null;
+
+    const snapshot = await this.db.database
+      .ref(`users/${this.user.displayName}/prohibidos/`)
+      .get();
+
+    if (snapshot) {
+      const bannedProteins = Object.keys(snapshot.val()).filter(
+        (ingredient: string) => snapshot.val()[ingredient] === 'protein'
+      );
+      const bannedCereals = Object.keys(snapshot.val()).filter(
+        (ingredient: string) => snapshot.val()[ingredient] === 'cereal'
+      );
+      const bannedFruits = Object.keys(snapshot.val()).filter(
+        (ingredient: string) => snapshot.val()[ingredient] === 'fruit'
+      );
+      const bannedVegetables = Object.keys(snapshot.val()).filter(
+        (ingredient: string) => snapshot.val()[ingredient] === 'vegetable'
+      );
+
+      const filteredProteins = this.proteins.filter(
+        ingredient => !bannedProteins.includes(ingredient)
+      );
+      const filteredCereals = this.cereals.filter(
+        ingredient => !bannedCereals.includes(ingredient)
+      );
+      const filteredFruits = this.fruits.filter(
+        ingredient => !bannedFruits.includes(ingredient)
+      );
+      const filteredVegetables = this.vegetables.filter(
+        ingredient => !bannedVegetables.includes(ingredient)
+      );
+
+      this.filteredProteins = filteredProteins;
+      this.filteredCereals = filteredCereals;
+      this.filteredVegetables = filteredVegetables;
+      this.filteredFruits = filteredFruits;
+
+      filteredIngredients = {
+        proteins: filteredProteins,
+        cereals: filteredCereals,
+        fruits: filteredFruits,
+        vegetables: filteredVegetables
+      };
+    }
+
+    return filteredIngredients;
   };
 
   // listenOnChanges = () => {
@@ -89,16 +151,16 @@ export class PlateService {
     let familyOfIngredients: any;
     switch (category) {
       case 'protein':
-        familyOfIngredients = this.proteins;
+        familyOfIngredients = this.filteredProteins;
         break;
       case 'vegetable':
-        familyOfIngredients = this.vegetables;
+        familyOfIngredients = this.filteredVegetables;
         break;
       case 'fruit':
-        familyOfIngredients = this.fruits;
+        familyOfIngredients = this.filteredFruits;
         break;
       case 'cereal':
-        familyOfIngredients = this.cereals;
+        familyOfIngredients = this.filteredCereals;
     }
     console.log('familyOfIngredients', familyOfIngredients);
     const randomItem =

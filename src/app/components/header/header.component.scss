@@ -4,11 +4,6 @@
   display: none;
 }
 
-.header__nav__show {
-  display: flex;
-  justify-content: space-between;
-}
-
 .menuToggle {
   background-color: transparent;
   color: $blue;
@@ -21,18 +16,35 @@
 .sideMenu {
   list-style-type: none;
   padding: 0;
+
   &__item {
     text-decoration: none;
     color: white;
     font-size: 18px;
+
     li {
       padding: 1rem 2rem;
     }
   }
 }
 
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+
+  &__button {
+    margin: 0;
+  }
+}
+
+.content {
+  margin: 2rem 1rem;
+}
+
 .mainContent {
   height: 100vh;
+  margin: 1rem;
 }
 
 .logo {
@@ -41,7 +53,7 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .header__nav__show,
+  .navBar,
   .menuToggle__sideMenu {
     display: none;
   }
@@ -49,6 +61,7 @@
   .desktopNav {
     display: flex;
     justify-content: space-between;
+    margin: 1rem;
   }
 
   .header nav {

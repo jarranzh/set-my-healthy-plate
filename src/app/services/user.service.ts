@@ -41,6 +41,16 @@ export class UserService {
     return this.favorites;
   };
 
+  getBannedIngredients = async () => {
+    const snapshot = await this.db.database
+      .ref(`users/${this.user.displayName}/prohibidos/`)
+      .get();
+
+    if (snapshot) {
+      return snapshot.val();
+    }
+  };
+
   getLength = async (element: string) => {
     let length = 0;
 

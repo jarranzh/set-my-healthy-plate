@@ -1,5 +1,5 @@
 <div class="centered">
-  <h1 *ngIf="!randomPlate">Set My Healthy Plate</h1>
+  <h1 *ngIf="!randomPlate" class="title">Set My Healthy Plate</h1>
   <div *ngIf="randomPlate" class="randomPlate">
     <div class="pieContainer">
       <div class="pieBackground"></div>
@@ -57,14 +57,6 @@
               >change_circle</mat-icon
             >
           </button>
-          <!-- <select (change)="modifyIngredient($event, 'protein')">
-            <option selected disabled hidden>Cambia de ingrediente</option>
-            <option
-              *ngFor="let protein of ingredients.proteins"
-              value="{{ protein }}"
-              >{{ protein }}</option
-            >
-          </select> -->
           <button
             class="button--sm"
             (click)="banIngredient(randomPlate.protein, 'protein')"
@@ -73,11 +65,6 @@
               block</mat-icon
             >
           </button>
-
-          <!-- <fa-icon
-            [icon]="faBan"
-            (click)="banIngredient(randomPlate.protein, 'protein')"
-          ></fa-icon> -->
         </div>
       </div>
       <div class="ingredientItem">
@@ -92,19 +79,6 @@
               >change_circle</mat-icon
             >
           </button>
-          <!-- <select (change)="modifyIngredient($event, 'cereal')">
-            <option selected disabled hidden>Cambia de ingrediente</option>
-            <option
-              *ngFor="let cereal of ingredients.cereals"
-              value="{{ cereal }}"
-              >{{ cereal }}</option
-            >
-          </select> 
-          <fa-icon
-            [icon]="faBan"
-            (click)="banIngredient(randomPlate.cereal, 'cereal')"
-          ></fa-icon>-->
-
           <button
             class="button--sm"
             (click)="banIngredient(randomPlate.cereal, 'cereal')"
@@ -127,18 +101,6 @@
               >change_circle</mat-icon
             >
           </button>
-          <!-- <select (change)="modifyIngredient($event, 'vegetable')">
-            <option selected disabled hidden>Cambia de ingrediente</option>
-            <option
-              *ngFor="let vegetable of ingredients.vegetables"
-              value="{{ vegetable }}"
-              >{{ vegetable }}</option
-            >
-          </select> 
-          <fa-icon
-            [icon]="faBan"
-            (click)="banIngredient(randomPlate.vegetable, 'vegetable')"
-          ></fa-icon>-->
           <button
             class="button--sm"
             (click)="banIngredient(randomPlate.vegetable, 'vegetable')"
@@ -161,18 +123,6 @@
               >change_circle</mat-icon
             >
           </button>
-          <!-- <select (change)="modifyIngredient($event, 'fruit')">
-            <option selected disabled hidden>Cambia de ingrediente</option>
-            <option
-              *ngFor="let fruit of ingredients.fruits"
-              value="{{ fruit }}"
-              >{{ fruit }}</option
-            >
-          </select> 
-          <fa-icon
-            [icon]="faBan"
-            (click)="banIngredient(randomPlate.fruit, 'fruit')"
-          ></fa-icon>-->
           <button
             class="button--sm"
             (click)="banIngredient(randomPlate.fruit, 'fruit')"
@@ -189,72 +139,3 @@
     Quiero un Healthy Plate
   </button>
 </div>
-
-<!-- <div class="wrapper" *ngIf="user?.emailVerified">
-  <div class="section">
-    <p>FRUTAS:</p>
-    <ul *ngFor="let fruit of fruits">
-      <li>{{ fruit }}</li>
-    </ul>
-  </div>
-  <div class="section">
-    <p>PROTEINAS:</p>
-    <ul *ngFor="let protein of proteins">
-      <li>{{ protein }}</li>
-    </ul>
-  </div>
-  <div class="section">
-    <p>VERDURAS:</p>
-    <ul *ngFor="let vegetable of vegetables">
-      <li>{{ vegetable }}</li>
-    </ul>
-  </div>
-  <div class="section">
-    <p>CEREALES:</p>
-    <ul *ngFor="let cereal of cereals">
-      <li>{{ cereal }}</li>
-    </ul>
-  </div>
-  <div class="section">
-    <p>Random fruit: {{ randomFruit }}</p>
-    <p>Random protein: {{ randomProtein }}</p>
-    <button type="button" (click)="randomFruit = getRandomIngredient(fruits)">
-      Get me a random fruit
-    </button>
-
-    <button
-      type="button"
-      (click)="randomProtein = getRandomIngredient(proteins)"
-    >
-      Get me a random protein
-    </button>
-  </div>
-
-  <div class="section">
-    <form action="#" name="ingredientForm">
-      Ingrediente:
-      <input type="text" #ingredientInput />
-      Tipo:
-      <input type="text" #typeInput />
-      <button
-        type="button"
-        (click)="addIngredient(ingredientInput.value, typeInput.value)"
-      >
-        AÑADIR
-      </button>
-    </form>
-  </div>
-  <div class="section">
-    <button type="button" (click)="getMenu()">
-      Get me a menu
-    </button>
-    <div *ngFor="let day of menu; let i = index">
-      <p>DÍA {{ i + 1 }}</p>
-      <p>{{ day.protein }}</p>
-      <p>{{ day.cereal }}</p>
-      <p>{{ day.vegetable }}</p>
-      <p>{{ day.fruit }}</p>
-      <p>------------</p>
-    </div>
-  </div>
-</div> -->

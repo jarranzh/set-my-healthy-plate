@@ -3,16 +3,23 @@
 .menu {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   &__info {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
 
     &__day {
       background-color: $secondary-green;
       color: $blue;
-      margin: 0.5rem 0;
-      max-width: 80%;
+      margin: 0.5rem 0.5rem;
+      width: 80%;
+
+      .dayContent {
+        display: flex;
+        flex-direction: column;
+      }
     }
   }
 
@@ -22,4 +29,20 @@
 }
 
 @media screen and (min-width: 425px) {
+  .menu__info {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    &__day {
+      width: auto;
+      min-width: 40%;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .menu__info__day {
+    min-width: 25%;
+  }
 }

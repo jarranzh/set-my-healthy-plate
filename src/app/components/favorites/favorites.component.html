@@ -1,5 +1,7 @@
 <h2>TUS PLATOS FAVORITOS</h2>
-<mat-spinner *ngIf="isLoading" color="accent"></mat-spinner>
+<div class="centered">
+  <mat-spinner *ngIf="isLoading" color="accent"></mat-spinner>
+</div>
 <div *ngIf="!platosFavoritos && !isLoading">
   ¡Vaya! Parece que no tienes ningún plato favorito aún. Prueba a añadir uno
   desde el generador de platos

@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { PlateGeneratorComponent } from './components/plate-generator/plate-generator.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.component';
+import { NotAllowedIngredientsComponent } from './components/not-allowed-ingredients/not-allowed-ingredients.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/plate-generator', pathMatch: 'full' },
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'plate-generator', component: PlateGeneratorComponent },
   { path: 'favorites', component: FavoritesComponent },
-  { path: 'weekly-menu', component: WeeklyMenuComponent }
+  { path: 'weekly-menu', component: WeeklyMenuComponent },
+  { path: 'not-allowed-ingredients', component: NotAllowedIngredientsComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
