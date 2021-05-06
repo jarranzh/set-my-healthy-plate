@@ -30,6 +30,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NotAllowedIngredientsComponent } from './components/not-allowed-ingredients/not-allowed-ingredients.component';
+import { NoHeaderComponent } from './components/no-header/no-header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import { NotAllowedIngredientsComponent } from './components/not-allowed-ingredi
     FavoritesComponent,
     WeeklyMenuComponent,
     ModalContentComponent,
-    NotAllowedIngredientsComponent
+    NotAllowedIngredientsComponent,
+    NoHeaderComponent
   ],
   imports: [
     BrowserModule,
