@@ -7,8 +7,8 @@
     ¡Vaya! Parece que no tienes ningún plato favorito aún. Prueba a añadir uno
     desde el generador de platos
   </div>
-  <div *ngIf="platosFavoritos && !isLoading">
-    <ul *ngFor="let plato of platosFavoritos; let i = index">
+  <div *ngIf="platosFavoritos && !isLoading" class="platosFavoritos">
+    <!-- <ul *ngFor="let plato of platosFavoritos; let i = index">
       <div class="platosFavoritos__plato">
         <p class="platosFavoritos__plato__item">Plato {{ i + 1 }}</p>
         <div class="favIcon">
@@ -25,6 +25,33 @@
       <li>Proteina: {{ plato.protein }}</li>
       <li>Verdura: {{ plato.vegetable }}</li>
       <li>Fruta: {{ plato.fruit }}</li>
-    </ul>
+    </ul> -->
+    <mat-card
+      class="platosFavoritos__item"
+      *ngFor="let plato of platosFavoritos; let i = index"
+    >
+      <mat-card-header>
+        <div mat-card-avatar></div>
+        <mat-card-title>Plato {{ i + 1 }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="itemContent">
+        <ul>
+          <li>Proteína: {{ plato.protein }}</li>
+          <li>Cereal: {{ plato.cereal }}</li>
+          <li>Verdura: {{ plato.vegetable }}</li>
+          <li>Fruta: {{ plato.fruit }}</li>
+        </ul>
+
+        <button
+          (click)="deleteFav(plato)"
+          *ngIf="plato.isFavorite"
+          matTooltip="Eliminar de favoritos"
+        >
+          <div>
+            <fa-icon [icon]="solidFaHeart"></fa-icon>
+          </div>
+        </button>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

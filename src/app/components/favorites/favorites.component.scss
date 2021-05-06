@@ -1,9 +1,42 @@
+@import '../../../variables';
+
+// .platosFavoritos {
+//   &__plato {
+//     display: flex;
+//     align-items: center;
+//     &__item {
+//       padding-right: 1rem;
+//     }
+//   }
+// }
+
 .platosFavoritos {
-  &__plato {
-    display: flex;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__item {
+    background-color: $secondary-green;
+    color: $blue;
+    margin: 0.5rem 0.5rem;
+    width: 80%;
+
+    .itemContent {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .platosFavoritos {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
     &__item {
-      padding-right: 1rem;
+      width: auto;
+      min-width: 20%;
     }
   }
 }
