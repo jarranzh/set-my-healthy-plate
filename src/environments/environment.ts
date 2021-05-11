@@ -7,23 +7,13 @@ export const environment = {
   firebaseConfig: {
     apiKey: 'AIzaSyDo8_TNtRSC7di-28BPNlvN8U7ypOMo4_I',
     authDomain: 'set-my-healthy-plate.firebaseapp.com',
+    databaseURL: 'https://set-my-healthy-plate-default-rtdb.firebaseio.com',
     projectId: 'set-my-healthy-plate',
     storageBucket: 'set-my-healthy-plate.appspot.com',
     messagingSenderId: '107360567603',
     appId: '1:107360567603:web:3344839addead6f4967e46',
-    measurementId: 'G-CMM5168KHE',
-    databaseURL: 'https://set-my-healthy-plate-default-rtdb.firebaseio.com/'
+    measurementId: 'G-CMM5168KHE'
   }
-  // firebaseConfig: {
-  //   apiKey: 'AIzaSyDWV9LWOF1aNN63miyLpHm51-ZwNnxPQiI',
-  //   authDomain: 'prueba-firebase-v1.firebaseapp.com',
-  //   projectId: 'prueba-firebase-v1',
-  //   storageBucket: 'prueba-firebase-v1.appspot.com',
-  //   messagingSenderId: '748640555084',
-  //   appId: '1:748640555084:web:6bfd63522cbeed999964e9',
-  //   measurementId: 'G-L2C7GX4QM4',
-  //   databaseURL: 'https://prueba-firebase-v1-default-rtdb.firebaseio.com/'
-  // }
 };
 /*
  * For easier debugging in development mode, you can import the following file

@@ -8,13 +8,13 @@
         type="email"
         [formControl]="email"
         placeholder="Correo electrónico"
+        autocomplete="off"
       />
       <div
         style="color: red;"
         *ngIf="
-          (registerForm.get('email')?.errors &&
-            registerForm.get('email')?.touched) ||
-          registerForm.get('email')?.dirty
+          registerForm.get('email')?.errors &&
+          registerForm.get('email')?.touched
         "
       >
         <span *ngIf="registerForm.get('email')?.errors?.required"

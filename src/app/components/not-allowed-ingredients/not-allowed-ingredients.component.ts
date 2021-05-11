@@ -24,7 +24,14 @@ export class NotAllowedIngredientsComponent implements OnInit {
     }
   }
   getBannedIngredients = async () => {
+    this.isLoading = true;
     this.bannedIngredients = await this.userService.getBannedIngredients();
     this.isLoading = false;
+  };
+
+  allowIngredient = (event: any) => {
+    console.log('event', event.source.value);
+    this.userService.allowIngredient(event.source.value);
+    this.getBannedIngredients();
   };
 }

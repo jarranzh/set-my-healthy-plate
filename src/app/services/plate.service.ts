@@ -16,7 +16,7 @@ export class PlateService {
   public filteredFruits!: string[];
   public filteredCereals!: string[];
 
-  public randomPlate!: Plate;
+  public randomPlate: any;
   public user: any;
 
   isFavorite = false;
@@ -26,22 +26,13 @@ export class PlateService {
     private userService: UserService
   ) {
     this.user = this.userService.getUser();
-    this.getDBIngredients().then(async () => {
-      await this.updateIngredientsLists();
-
-      console.log('FINAL PROTEINS', this.filteredProteins);
-      console.log('FINAL VEGETABLES', this.filteredVegetables);
-      console.log('FINAL CEREALS', this.filteredCereals);
-      console.log('FINAL FRUITS', this.filteredFruits);
-    });
+    this.getDBIngredients();
   }
 
   getDBIngredients = async () => {
     const snapshot = await this.db.database.ref('Ingredientes').get();
 
-    if (snapshot) {
-      //      this.getBannedIngredients();
-      // TODO: remove from list of ingredients, the banned ingredients
+    if (snapshot.val()) {
       this.proteins = Object.keys(snapshot.val()).filter(
         key => snapshot.val()[key] === 'protein'
       );
@@ -55,8 +46,7 @@ export class PlateService {
         key => snapshot.val()[key] === 'cereal'
       );
     }
-
-    // this.listenOnChanges();
+    await this.updateIngredientsLists();
 
     return {
       proteins: this.proteins,
@@ -73,7 +63,7 @@ export class PlateService {
       .ref(`users/${this.user.displayName}/prohibidos/`)
       .get();
 
-    if (snapshot) {
+    if (snapshot.val()) {
       const bannedProteins = Object.keys(snapshot.val()).filter(
         (ingredient: string) => snapshot.val()[ingredient] === 'protein'
       );
@@ -105,49 +95,40 @@ export class PlateService {
       this.filteredVegetables = filteredVegetables;
       this.filteredFruits = filteredFruits;
 
+      console.log('FINAL PROTEINS', this.filteredProteins);
+      console.log('FINAL VEGETABLES', this.filteredVegetables);
+      console.log('FINAL CEREALS', this.filteredCereals);
+      console.log('FINAL FRUITS', this.filteredFruits);
+
       filteredIngredients = {
         proteins: filteredProteins,
         cereals: filteredCereals,
         fruits: filteredFruits,
         vegetables: filteredVegetables
       };
+    } else {
+      // There are no banned ingredients
+      this.filteredProteins = this.proteins;
+      this.filteredCereals = this.cereals;
+      this.filteredVegetables = this.vegetables;
+      this.filteredFruits = this.fruits;
+
+      filteredIngredients = {
+        proteins: this.proteins,
+        cereals: this.cereals,
+        fruits: this.fruits,
+        vegetables: this.vegetables
+      };
     }
 
     return filteredIngredients;
   };
 
-  // listenOnChanges = () => {
-  //   this.db.database
-  //     .ref(`users/${this.user.displayName}/prohibidos`)
-  //     .on('value', (snapshot: any) => {
-  //       const bannedProteins = Object.keys(snapshot.val()).filter(
-  //         (ingredient: string) => snapshot.val()[ingredient] === 'protein'
-  //       );
-  //       console.log('BANNED PROTEINS', bannedProteins);
-  //       const bannedVegetables = Object.keys(snapshot.val()).filter(
-  //         (ingredient: string) => snapshot.val()[ingredient] === 'vegetable'
-  //       );
-  //       const bannedFruits = Object.keys(snapshot.val()).filter(
-  //         (ingredient: string) => snapshot.val()[ingredient] === 'fruit'
-  //       );
-  //       const bannedCereals = Object.keys(snapshot.val()).filter(
-  //         (ingredient: string) => snapshot.val()[ingredient] === 'cereal'
-  //       );
+  getRandomIngredient = async (category: string) => {
+    // if (!this.proteins || !this.cereals || !this.fruits || !this.vegetables) {
+    //   await this.getDBIngredients();
+    // }
 
-  //       this.proteins = this.proteins.filter((ingredient: string) => {
-  //         console.log('ingrediente de this.proteins', ingredient);
-  //         return bannedProteins.map(e => {
-  //           console.log('ingrediente de banned', e);
-  //           return ingredient !== e;
-  //         });
-  //       });
-  //       console.log('PROTEINAS ACTUALIZADAS', this.proteins);
-  //     });
-  // };
-
-  getRandomIngredient = (category: string): string => {
-    this.getDBIngredients();
-    console.log(category);
     let familyOfIngredients: any;
     switch (category) {
       case 'protein':
@@ -162,7 +143,6 @@ export class PlateService {
       case 'cereal':
         familyOfIngredients = this.filteredCereals;
     }
-    console.log('familyOfIngredients', familyOfIngredients);
     const randomItem =
       familyOfIngredients[
         Math.floor(Math.random() * familyOfIngredients.length)
@@ -171,16 +151,17 @@ export class PlateService {
   };
 
   public getRandomPlate = async () => {
-    const protein = this.getRandomIngredient('protein');
-    const cereal = this.getRandomIngredient('cereal');
-    const fruit = this.getRandomIngredient('fruit');
-    const vegetable = this.getRandomIngredient('vegetable');
+    const protein = await this.getRandomIngredient('protein');
+    const cereal = await this.getRandomIngredient('cereal');
+    const fruit = await this.getRandomIngredient('fruit');
+    const vegetable = await this.getRandomIngredient('vegetable');
     const isFavorite = await this.userService.getIsFavorite({
       protein: protein,
       cereal: cereal,
       fruit: fruit,
       vegetable: vegetable
     });
+
     this.randomPlate = {
       protein: protein,
       cereal: cereal,
@@ -188,7 +169,6 @@ export class PlateService {
       vegetable: vegetable,
       isFavorite: isFavorite
     };
-    console.log('1ST CALL TO ISFAVORITE');
     this.isFavorite = await this.userService.getIsFavorite(this.randomPlate);
     return this.randomPlate;
   };
@@ -199,7 +179,6 @@ export class PlateService {
       const plate = await this.getRandomPlate();
       menu.push(plate);
     }
-    console.log('menu', menu);
     this.db.database.ref(`users/${this.user.displayName}/menu`).set(menu);
     return menu;
   };

@@ -97,7 +97,10 @@ export class PlateGeneratorComponent implements OnInit {
     this.plateService
       .updateIngredientsLists()
       .then(
-        () => (this.randomPlate[category] = this.getRandomIngredient(category))
+        async () =>
+          (this.randomPlate[category] = await this.getRandomIngredient(
+            category
+          ))
       );
   };
 

@@ -46,7 +46,7 @@ export class UserService {
       .ref(`users/${this.user.displayName}/prohibidos/`)
       .get();
 
-    if (snapshot) {
+    if (snapshot.val()) {
       return snapshot.val();
     }
   };
@@ -131,6 +131,12 @@ export class UserService {
     this.db.database
       .ref(`users/${this.user.displayName}/prohibidos/${ingredient}`)
       .set(category);
+  };
+
+  allowIngredient = (ingredient: string) => {
+    this.db.database
+      .ref(`users/${this.user.displayName}/prohibidos/${ingredient}`)
+      .remove();
   };
 
   getUserMenu = async () => {

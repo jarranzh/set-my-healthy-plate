@@ -16,7 +16,13 @@
 
     <div *ngIf="bannedIngredients">
       <div *ngFor="let ingredient of bannedIngredients | keyvalue">
-        <mat-checkbox class="checkbox">{{ ingredient.key }}</mat-checkbox>
+        <mat-checkbox
+          class="checkbox"
+          [checked]="true"
+          (change)="allowIngredient($event)"
+          value="{{ ingredient.key }}"
+          >{{ ingredient.key }}</mat-checkbox
+        >
       </div>
     </div>
   </div>

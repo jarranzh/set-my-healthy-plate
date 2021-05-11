@@ -39,6 +39,30 @@ export class AuthService {
         }
         // Signed in
         // ...
+
+        /**
+         
+    this.auth
+      .signInWithEmailAndPassword(credentials.email, credentials.password)
+      .then(user => {
+        console.log('USER SIGNED', user);
+        console.log(
+          'bienvenido:',
+          user.user ? user.user.displayName : 'no displayname'
+        );
+
+        if (user.user) {
+          if (user.user.emailVerified) {
+            localStorage.setItem('user', JSON.stringify(user.user));
+            this.userService.getUser();
+            this.router.navigate(['/plate-generator']);
+          } else {
+            alert('This email is not verified yet. Please check your inbox');
+          }
+        }
+
+
+*/
       })
       .catch(error => {
         const errorCode = error.code;

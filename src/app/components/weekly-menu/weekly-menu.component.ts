@@ -37,11 +37,13 @@ export class WeeklyMenuComponent implements OnInit {
   getUserMenu = async () => {
     this.isLoading = true;
     this.menu = await this.userService.getUserMenu();
-    this.menu.map(
-      async (dayMenu: Plate) =>
-        (dayMenu.isFavorite = await this.userService.getIsFavorite(dayMenu))
-    );
-    console.log('MENU', this.menu);
+    if (this.menu) {
+      this.menu.map(
+        async (dayMenu: Plate) =>
+          (dayMenu.isFavorite = await this.userService.getIsFavorite(dayMenu))
+      );
+      console.log('MENU', this.menu);
+    }
     this.isLoading = false;
   };
 
