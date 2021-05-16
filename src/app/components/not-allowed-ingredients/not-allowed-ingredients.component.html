@@ -4,10 +4,7 @@
   </div>
   <div *ngIf="!isLoading">
     <h2>INGREDIENTES PROHIBIDOS</h2>
-    <p>
-      Estos son los ingredientes que has decidido eliminar de las sugerencias de
-      platos.
-    </p>
+
     <p *ngIf="!bannedIngredients">
       No tienes ningún alimento no permitido. Si quieres eliminar algún
       ingrediente de las sugerencias de platos, puedez hacerlo desde el
@@ -15,6 +12,10 @@
     </p>
 
     <div *ngIf="bannedIngredients">
+      <p>
+        Estos son los ingredientes que has decidido eliminar de las sugerencias
+        de platos.
+      </p>
       <div *ngFor="let ingredient of bannedIngredients | keyvalue">
         <mat-checkbox
           class="checkbox"

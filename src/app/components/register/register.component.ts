@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -14,7 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  public userLogged: any;
+  public userLogged!: User;
   public email!: FormControl;
   public password!: FormControl;
   public userName!: FormControl;

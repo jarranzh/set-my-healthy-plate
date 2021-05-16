@@ -1,8 +1,7 @@
-import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { User } from './../../models/user';
 
 @Component({
   selector: 'app-header',
@@ -11,13 +10,11 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   public isMenuOpen = false;
-  public routeUrl!: string;
-  public user: any;
+  public user!: User;
 
   constructor(
     private authService: AuthService,
-    private userService: UserService,
-    private router: Router
+    private userService: UserService
   ) {}
 
   public logOut = () => {

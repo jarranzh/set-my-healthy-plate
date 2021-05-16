@@ -7,9 +7,12 @@ import {
   faBan,
   faHeart as solidFaHeart
 } from '@fortawesome/free-solid-svg-icons';
+import { Ingredients } from 'src/app/models/ingredients';
+import { Plate } from 'src/app/models/plate';
 import { PlateService } from 'src/app/services/plate.service';
 import { UserService } from 'src/app/services/user.service';
 import { ModalContentComponent } from '../modal-content/modal-content.component';
+import { User } from './../../models/user';
 
 @Component({
   selector: 'app-plate-generator',
@@ -19,10 +22,10 @@ import { ModalContentComponent } from '../modal-content/modal-content.component'
 export class PlateGeneratorComponent implements OnInit {
   isFavorite = false;
   modalSelectedData!: string;
-  public menu: any[] = [];
-  public user: any;
-  public randomPlate: any;
-  public ingredients: any;
+  public menu: Plate[] = [];
+  public user!: User;
+  public randomPlate!: any; // Plate;
+  public ingredients!: Ingredients;
 
   public solidFaHeart = solidFaHeart;
   public regularFaHeart = regularFaHeart;
@@ -59,14 +62,10 @@ export class PlateGeneratorComponent implements OnInit {
 
   public getRandomPlate = async () => {
     this.randomPlate = await this.plateService.getRandomPlate();
-    console.log('2ND CALL TO ISFAVORITE');
-
     this.isFavorite = await this.userService.getIsFavorite(this.randomPlate);
   };
 
   public addIngredient = (ingredient: string, type: string) => {
-    console.log('INGREDIENT', ingredient);
-    console.log('TYPE', type);
     this.db.database
       .ref('Ingredientes')
       .child(ingredient)
@@ -74,7 +73,6 @@ export class PlateGeneratorComponent implements OnInit {
   };
 
   public saveAsFav = async () => {
-    console.log('SAVE AS FAV');
     this.userService.saveAsFav(this.randomPlate);
     this.isFavorite = true;
   };
@@ -94,15 +92,10 @@ export class PlateGeneratorComponent implements OnInit {
             category
           ))
       );
-  };
-
-  public modifyIngredient = (event: any, category: string) => {
-    console.log(event.target.value);
-    this.randomPlate[category] = event.target.value;
+    this.isFavorite = false;
   };
 
   openDialog = (data: any, category: string) => {
-    console.log('DATA TO SHOW', data);
     const dialogRef = this.dialog.open(ModalContentComponent, {
       data: { dataset: data, selectedData: this.modalSelectedData }
     });
@@ -110,8 +103,7 @@ export class PlateGeneratorComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: any) => {
       this.modalSelectedData = result;
       this.randomPlate[category] = result;
-
-      console.log(`Dialog result: ${result}`);
     });
+    this.isFavorite = false;
   };
 }

@@ -1,12 +1,14 @@
-import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { PlateService } from 'src/app/services/plate.service';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { faHeart as regularFaHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as solidFaHeart } from '@fortawesome/free-solid-svg-icons';
+import { Ingredients } from 'src/app/models/ingredients';
 import { Plate } from 'src/app/models/plate';
-import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { PlateService } from 'src/app/services/plate.service';
+import { UserService } from 'src/app/services/user.service';
 import { ModalContentComponent } from '../modal-content/modal-content.component';
+import { User } from './../../models/user';
 
 @Component({
   selector: 'app-weekly-menu',
@@ -16,11 +18,13 @@ import { ModalContentComponent } from '../modal-content/modal-content.component'
 export class WeeklyMenuComponent implements OnInit {
   isLoading = false;
   modalSelectedData!: string;
-  public menu: any;
+
+  public menu!: any; // Plate[];
+  public user!: User;
+  public ingredients!: Ingredients;
+
   public solidFaHeart = solidFaHeart;
   public regularFaHeart = regularFaHeart;
-  public user: any;
-  public ingredients: any;
 
   constructor(
     private userService: UserService,

@@ -169,12 +169,13 @@ export class PlateService {
       vegetable: vegetable,
       isFavorite: isFavorite
     };
-    this.isFavorite = await this.userService.getIsFavorite(this.randomPlate);
+    // this.isFavorite = await this.userService.getIsFavorite(this.randomPlate);
+    this.isFavorite = isFavorite;
     return this.randomPlate;
   };
 
   createMenu = async () => {
-    const menu = [];
+    const menu: Plate[] = [];
     for (let i = 0; i < 7; i++) {
       const plate = await this.getRandomPlate();
       menu.push(plate);

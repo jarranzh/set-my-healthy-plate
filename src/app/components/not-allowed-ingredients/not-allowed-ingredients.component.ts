@@ -1,6 +1,7 @@
-import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { User } from './../../models/user';
 
 @Component({
   selector: 'app-not-allowed-ingredients',
@@ -11,7 +12,8 @@ export class NotAllowedIngredientsComponent implements OnInit {
   isLoading = false;
 
   public bannedIngredients!: string[];
-  public user: any;
+  public user!: User;
+
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {

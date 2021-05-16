@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services/user.service';
-import { faHeart as solidFaHeart } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
+import { faHeart as solidFaHeart } from '@fortawesome/free-solid-svg-icons';
+import { Plate } from 'src/app/models/plate';
+import { UserService } from 'src/app/services/user.service';
+import { User } from './../../models/user';
 
 @Component({
   selector: 'app-favorites',
@@ -10,8 +12,8 @@ import { Router } from '@angular/router';
 })
 export class FavoritesComponent implements OnInit {
   isLoading = false;
-  public platosFavoritos: any;
-  public user: any;
+  public platosFavoritos!: Plate[];
+  public user!: User;
   public solidFaHeart = solidFaHeart;
 
   constructor(public userService: UserService, private router: Router) {}

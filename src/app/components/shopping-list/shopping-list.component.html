@@ -4,15 +4,16 @@
   </div>
   <div *ngIf="!isLoading">
     <h2>TU LISTA DE LA COMPRA</h2>
-    <p>
-      Esta es tu lista de la compra basada en el menú de esta semana
-    </p>
+
     <p *ngIf="!shoppingList">
       No tienes lista de la compra porque no has generado un menú. Puedes
       hacerlo desde la sección "Menú semanal"
     </p>
 
     <div *ngIf="shoppingList">
+      <p>
+        Esta es tu lista de la compra basada en el menú de esta semana
+      </p>
       <div *ngFor="let ingredient of shoppingList | keyvalue">
         <mat-checkbox
           class="checkbox"
