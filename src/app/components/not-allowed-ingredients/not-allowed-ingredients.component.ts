@@ -30,7 +30,6 @@ export class NotAllowedIngredientsComponent implements OnInit {
   };
 
   allowIngredient = (event: any) => {
-    console.log('event', event.source.value);
     this.userService.allowIngredient(event.source.value);
     this.getBannedIngredients();
   };

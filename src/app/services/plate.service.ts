@@ -180,6 +180,21 @@ export class PlateService {
       menu.push(plate);
     }
     this.db.database.ref(`users/${this.user.displayName}/menu`).set(menu);
+    this.createShoppinglist(menu);
     return menu;
+  };
+
+  createShoppinglist = async (menu: Plate[]) => {
+    let shoppingList: any = [];
+    menu.map(plate => shoppingList.push(Object.values(plate)));
+    shoppingList = shoppingList
+      .flat()
+      .filter((e: string | boolean) => e !== false && e !== true);
+    shoppingList = [...new Set(shoppingList)];
+    console.log('shopping list', shoppingList);
+
+    this.db.database
+      .ref(`users/${this.user.displayName}/shoppingList`)
+      .set(shoppingList);
   };
 }

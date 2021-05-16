@@ -8,6 +8,7 @@ import { NotAllowedIngredientsComponent } from './components/not-allowed-ingredi
 import { PlateGeneratorComponent } from './components/plate-generator/plate-generator.component';
 import { RegisterComponent } from './components/register/register.component';
 import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.component';
+import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/plate-generator', pathMatch: 'full' },
@@ -40,6 +41,11 @@ const routes: Routes = [
     path: 'not-allowed-ingredients',
     component: HeaderComponent,
     children: [{ path: '', component: NotAllowedIngredientsComponent }]
+  },
+  {
+    path: 'shopping-list',
+    component: HeaderComponent,
+    children: [{ path: '', component: ShoppingListComponent }]
   }
 ];
 @NgModule({

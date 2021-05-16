@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Plate } from '../models/plate';
+import { async } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,6 @@ export class UserService {
 
   constructor(private db: AngularFireDatabase) {
     this.user = this.getUser();
-    // this.favorites = this.getFavorites();
-    // this.favorites = localStorage.getItem('favorites').map(e => JSON.parse(e));
   }
 
   getUser = () => {
@@ -24,7 +23,6 @@ export class UserService {
   };
 
   getFavorites = async () => {
-    // this.favorites = null;
     const snapshot = await this.db.database
       .ref(`users/${this.user.displayName}/favoritos`)
       .get();
@@ -104,25 +102,25 @@ export class UserService {
   };
 
   deleteFav = async (plate: any) => {
-    console.log('DELETE FAV');
-    const favoritesLength = await this.getLength('favoritos');
-    console.log('favoritesLength', favoritesLength);
-    console.log('favorites', this.favorites);
-    const removePlate = this.favorites.find(
-      (favPlate: any) =>
-        favPlate.cereal === plate.cereal &&
-        favPlate.protein === plate.protein &&
-        favPlate.vegetable === plate.vegetable &&
-        favPlate.fruit === plate.fruit
-    );
+    const snapshot = await this.db.database
+      .ref(`users/${this.user.displayName}/favoritos/`)
+      .get();
 
-    this.db.database
-      .ref(
-        `users/${this.user.displayName}/favoritos/${this.favorites.indexOf(
-          removePlate
-        )}`
-      )
-      .remove();
+    if (snapshot.val()) {
+      const favorites = snapshot.val();
+      const index = favorites.findIndex(
+        (favPlate: Plate) =>
+          favPlate.protein === plate.protein &&
+          favPlate.cereal === plate.cereal &&
+          favPlate.fruit === plate.fruit &&
+          favPlate.vegetable === plate.vegetable
+      );
+      favorites.splice(index, 1);
+
+      this.db.database
+        .ref(`users/${this.user.displayName}/favoritos`)
+        .set(favorites);
+    }
     this.isFavorite = false;
     this.favorites = this.getFavorites();
   };
@@ -144,11 +142,37 @@ export class UserService {
     const snapshot = await this.db.database
       .ref(`users/${this.user.displayName}/menu`)
       .get();
-    console.log(snapshot.val());
 
     if (snapshot.val()) {
       menu = snapshot.val();
     }
     return menu;
+  };
+
+  getShoppingList = async () => {
+    let shoppingList = null;
+    const snapshot = await this.db.database
+      .ref(`users/${this.user.displayName}/shoppingList`)
+      .get();
+    if (snapshot.val()) {
+      shoppingList = snapshot.val();
+    }
+    return shoppingList;
+  };
+
+  removeFromShoppingList = async (ingredient: string) => {
+    const snapshot = await this.db.database
+      .ref(`users/${this.user.displayName}/shoppingList/`)
+      .get();
+
+    if (snapshot.val()) {
+      const shoppingList = snapshot.val();
+      const index = shoppingList.indexOf(ingredient);
+      shoppingList.splice(index, 1);
+
+      this.db.database
+        .ref(`users/${this.user.displayName}/shoppingList`)
+        .set(shoppingList);
+    }
   };
 }

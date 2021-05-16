@@ -31,6 +31,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NotAllowedIngredientsComponent } from './components/not-allowed-ingredients/not-allowed-ingredients.component';
 import { NoHeaderComponent } from './components/no-header/no-header.component';
+import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { NoHeaderComponent } from './components/no-header/no-header.component';
     WeeklyMenuComponent,
     ModalContentComponent,
     NotAllowedIngredientsComponent,
-    NoHeaderComponent
+    NoHeaderComponent,
+    ShoppingListComponent
   ],
   imports: [
     BrowserModule,

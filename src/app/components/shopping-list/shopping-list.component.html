@@ -1,0 +1,27 @@
+<div class="m-top">
+  <div class="centered">
+    <mat-spinner *ngIf="isLoading" color="accent"></mat-spinner>
+  </div>
+  <div *ngIf="!isLoading">
+    <h2>TU LISTA DE LA COMPRA</h2>
+    <p>
+      Esta es tu lista de la compra basada en el menú de esta semana
+    </p>
+    <p *ngIf="!shoppingList">
+      No tienes lista de la compra porque no has generado un menú. Puedes
+      hacerlo desde la sección "Menú semanal"
+    </p>
+
+    <div *ngIf="shoppingList">
+      <div *ngFor="let ingredient of shoppingList | keyvalue">
+        <mat-checkbox
+          class="checkbox"
+          [checked]="true"
+          (change)="removeFromShoppingList($event)"
+          value="{{ ingredient.value }}"
+          >{{ ingredient.value }}</mat-checkbox
+        >
+      </div>
+    </div>
+  </div>
+</div>
