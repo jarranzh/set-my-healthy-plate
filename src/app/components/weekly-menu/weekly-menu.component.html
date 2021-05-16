@@ -14,12 +14,102 @@
           <mat-card-title>DÍA {{ i + 1 }}</mat-card-title>
         </mat-card-header>
         <mat-card-content class="dayContent">
-          <ul>
-            <li>Proteína: {{ dayMenu.protein }}</li>
-            <li>Cereal: {{ dayMenu.cereal }}</li>
-            <li>Verdura: {{ dayMenu.vegetable }}</li>
-            <li>Fruta: {{ dayMenu.fruit }}</li>
-          </ul>
+          <div class="dayContent__ingredient">
+            <p>Proteína: {{ dayMenu.protein }}</p>
+            <div>
+              <button
+                class="button--sm"
+                mat-raised-button
+                (click)="openDialog(ingredients.proteins, 'protein', i)"
+              >
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Change ingredient icon"
+                  >change_circle</mat-icon
+                >
+              </button>
+              <button
+                class="button--sm"
+                (click)="banIngredient(dayMenu.protein, 'protein', i)"
+              >
+                <mat-icon aria-hidden="false" aria-label="Ban ingredient icon">
+                  block</mat-icon
+                >
+              </button>
+            </div>
+          </div>
+          <div class="dayContent__ingredient">
+            <p>Cereal: {{ dayMenu.cereal }}</p>
+            <div>
+              <button
+                class="button--sm"
+                mat-raised-button
+                (click)="openDialog(ingredients.cereals, 'cereal', i)"
+              >
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Change ingredient icon"
+                  >change_circle</mat-icon
+                >
+              </button>
+              <button
+                class="button--sm"
+                (click)="banIngredient(dayMenu.cereal, 'cereal', i)"
+              >
+                <mat-icon aria-hidden="false" aria-label="Ban ingredient icon">
+                  block</mat-icon
+                >
+              </button>
+            </div>
+          </div>
+          <div class="dayContent__ingredient">
+            <p>Verdura: {{ dayMenu.vegetable }}</p>
+            <div>
+              <button
+                class="button--sm"
+                mat-raised-button
+                (click)="openDialog(ingredients.vegetables, 'vegetable', i)"
+              >
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Change ingredient icon"
+                  >change_circle</mat-icon
+                >
+              </button>
+              <button
+                class="button--sm"
+                (click)="banIngredient(dayMenu.vegetable, 'vegetable', i)"
+              >
+                <mat-icon aria-hidden="false" aria-label="Ban ingredient icon">
+                  block</mat-icon
+                >
+              </button>
+            </div>
+          </div>
+          <div class="dayContent__ingredient">
+            <p>Fruta: {{ dayMenu.fruit }}</p>
+            <div>
+              <button
+                class="button--sm"
+                mat-raised-button
+                (click)="openDialog(ingredients.fruits, 'fruit', i)"
+              >
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Change ingredient icon"
+                  >change_circle</mat-icon
+                >
+              </button>
+              <button
+                class="button--sm"
+                (click)="banIngredient(dayMenu.fruit, 'fruit', i)"
+              >
+                <mat-icon aria-hidden="false" aria-label="Ban ingredient icon">
+                  block</mat-icon
+                >
+              </button>
+            </div>
+          </div>
           <button
             (click)="saveAsFav(dayMenu)"
             *ngIf="!dayMenu.isFavorite"

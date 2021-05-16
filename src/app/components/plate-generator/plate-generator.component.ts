@@ -19,11 +19,7 @@ import { ModalContentComponent } from '../modal-content/modal-content.component'
 export class PlateGeneratorComponent implements OnInit {
   isFavorite = false;
   modalSelectedData!: string;
-
-  // public randomFruit: any;
-  // public randomProtein: any;
   public menu: any[] = [];
-  // public favorite = false;
   public user: any;
   public randomPlate: any;
   public ingredients: any;
@@ -47,7 +43,6 @@ export class PlateGeneratorComponent implements OnInit {
     }
     // ------GET INGREDIENTS FROM DB------
     this.getDBIngredients();
-    console.log('INGREDIENTS', this.ingredients);
   }
 
   ngOnInit(): void {}
@@ -55,7 +50,6 @@ export class PlateGeneratorComponent implements OnInit {
   getDBIngredients = async () => {
     const ingredients = await this.plateService.getDBIngredients();
     this.ingredients = ingredients;
-    console.log('ingredients', ingredients);
     return ingredients;
   };
 
@@ -89,8 +83,6 @@ export class PlateGeneratorComponent implements OnInit {
     this.userService.deleteFav(this.randomPlate);
     this.isFavorite = false;
   };
-
-  // Añadir en algún sitio la lista de prohibidos para poder volver a añadirlos
 
   public banIngredient = async (ingredient: string, category: string) => {
     this.userService.banIngredient(ingredient, category);
