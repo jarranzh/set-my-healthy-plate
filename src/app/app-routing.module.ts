@@ -14,36 +14,43 @@ const routes: Routes = [
   { path: '', redirectTo: '/plate-generator', pathMatch: 'full' },
   {
     path: 'login',
+    redirectTo: '/login',
     component: NoHeaderComponent,
     children: [{ path: '', component: LoginComponent }]
   },
   {
     path: 'register',
+    redirectTo: '/register',
     component: NoHeaderComponent,
     children: [{ path: '', component: RegisterComponent }]
   },
   {
     path: 'plate-generator',
+    redirectTo: '/plate-generator',
     component: HeaderComponent,
     children: [{ path: '', component: PlateGeneratorComponent }]
   },
   {
     path: 'favorites',
+    redirectTo: '/favorites',
     component: HeaderComponent,
     children: [{ path: '', component: FavoritesComponent }]
   },
   {
     path: 'weekly-menu',
+    redirectTo: '/weekly-menu',
     component: HeaderComponent,
     children: [{ path: '', component: WeeklyMenuComponent }]
   },
   {
     path: 'not-allowed-ingredients',
+    redirectTo: '/not-allowed-ingredients',
     component: HeaderComponent,
     children: [{ path: '', component: NotAllowedIngredientsComponent }]
   },
   {
     path: 'shopping-list',
+    redirectTo: '/shopping-list',
     component: HeaderComponent,
     children: [{ path: '', component: ShoppingListComponent }]
   }
