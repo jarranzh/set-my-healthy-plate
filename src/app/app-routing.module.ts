@@ -15,61 +15,37 @@ const routes: Routes = [
   {
     path: 'login',
     component: NoHeaderComponent,
-    children: [{ path: '', redirectTo: '/login', component: LoginComponent }]
+    children: [{ path: '', component: LoginComponent }]
   },
   {
     path: 'register',
     component: NoHeaderComponent,
-    children: [
-      { path: '', redirectTo: '/register', component: RegisterComponent }
-    ]
+    children: [{ path: '', component: RegisterComponent }]
   },
   {
     path: 'plate-generator',
     component: HeaderComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: '/plate-generator',
-        component: PlateGeneratorComponent
-      }
-    ]
+    children: [{ path: '', component: PlateGeneratorComponent }]
   },
   {
     path: 'favorites',
     component: HeaderComponent,
-    children: [
-      { path: '', redirectTo: '/favorites', component: FavoritesComponent }
-    ]
+    children: [{ path: '', component: FavoritesComponent }]
   },
   {
     path: 'weekly-menu',
     component: HeaderComponent,
-    children: [
-      { path: '', redirectTo: '/weekly-menu', component: WeeklyMenuComponent }
-    ]
+    children: [{ path: '', component: WeeklyMenuComponent }]
   },
   {
     path: 'not-allowed-ingredients',
     component: HeaderComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: '/not-allowed-ingredients',
-        component: NotAllowedIngredientsComponent
-      }
-    ]
+    children: [{ path: '', component: NotAllowedIngredientsComponent }]
   },
   {
     path: 'shopping-list',
     component: HeaderComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: '/shopping-list',
-        component: ShoppingListComponent
-      }
-    ]
+    children: [{ path: '', component: ShoppingListComponent }]
   }
 ];
 @NgModule({
