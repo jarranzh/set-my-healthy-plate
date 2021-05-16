@@ -14,45 +14,62 @@ const routes: Routes = [
   { path: '', redirectTo: '/plate-generator', pathMatch: 'full' },
   {
     path: 'login',
-    redirectTo: '/login',
     component: NoHeaderComponent,
-    children: [{ path: '', component: LoginComponent }]
+    children: [{ path: '', redirectTo: '/login', component: LoginComponent }]
   },
   {
     path: 'register',
-    redirectTo: '/register',
     component: NoHeaderComponent,
-    children: [{ path: '', component: RegisterComponent }]
+    children: [
+      { path: '', redirectTo: '/register', component: RegisterComponent }
+    ]
   },
   {
     path: 'plate-generator',
-    redirectTo: '/plate-generator',
     component: HeaderComponent,
-    children: [{ path: '', component: PlateGeneratorComponent }]
+    children: [
+      {
+        path: '',
+        redirectTo: '/plate-generator',
+        component: PlateGeneratorComponent
+      }
+    ]
   },
   {
     path: 'favorites',
-    redirectTo: '/favorites',
     component: HeaderComponent,
-    children: [{ path: '', component: FavoritesComponent }]
+    children: [
+      { path: '', redirectTo: '/favorites', component: FavoritesComponent }
+    ]
   },
   {
     path: 'weekly-menu',
-    redirectTo: '/weekly-menu',
     component: HeaderComponent,
-    children: [{ path: '', component: WeeklyMenuComponent }]
+    children: [
+      { path: '', redirectTo: '/weekly-menu', component: WeeklyMenuComponent }
+    ]
   },
   {
     path: 'not-allowed-ingredients',
-    redirectTo: '/not-allowed-ingredients',
     component: HeaderComponent,
-    children: [{ path: '', component: NotAllowedIngredientsComponent }]
+    children: [
+      {
+        path: '',
+        redirectTo: '/not-allowed-ingredients',
+        component: NotAllowedIngredientsComponent
+      }
+    ]
   },
   {
     path: 'shopping-list',
-    redirectTo: '/shopping-list',
     component: HeaderComponent,
-    children: [{ path: '', component: ShoppingListComponent }]
+    children: [
+      {
+        path: '',
+        redirectTo: '/shopping-list',
+        component: ShoppingListComponent
+      }
+    ]
   }
 ];
 @NgModule({
