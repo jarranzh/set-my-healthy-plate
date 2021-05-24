@@ -4,7 +4,10 @@
     <mat-drawer-container class="menuToggle" hasBackdrop>
       <mat-drawer #drawer mode="over" class="menuToggle__sideMenu">
         <ul class="sideMenu">
-          <a routerLink="/" (click)="drawer.toggle()" class="sideMenu__item"
+          <a
+            routerLink="/about"
+            (click)="drawer.toggle()"
+            class="sideMenu__item"
             ><li>¿Qué es SetMyHealthyPlate?</li></a
           >
           <a
@@ -65,7 +68,7 @@
     <div class="desktopNav">
       <ul class="nav__list">
         <li>
-          <a class="nav__list__link" routerLink="/"
+          <a class="nav__list__link" routerLink="/about"
             >¿Qué es SetMyHealthyPlate?</a
           >
         </li>

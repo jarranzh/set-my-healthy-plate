@@ -31,6 +31,7 @@ import { PlateGeneratorComponent } from './components/plate-generator/plate-gene
 import { RegisterComponent } from './components/register/register.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.compon
     ModalContentComponent,
     NotAllowedIngredientsComponent,
     NoHeaderComponent,
-    ShoppingListComponent
+    ShoppingListComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

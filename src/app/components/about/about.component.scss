@@ -1,0 +1,20 @@
+.about {
+  font-size: 1.5rem;
+  line-height: 2rem;
+
+  &__image {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+
+    img {
+      max-width: 80%;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .about__image img {
+    width: 600px;
+  }
+}

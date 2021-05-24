@@ -9,6 +9,7 @@ import { PlateGeneratorComponent } from './components/plate-generator/plate-gene
 import { RegisterComponent } from './components/register/register.component';
 import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/plate-generator', pathMatch: 'full' },
@@ -46,6 +47,11 @@ const routes: Routes = [
     path: 'shopping-list',
     component: HeaderComponent,
     children: [{ path: '', component: ShoppingListComponent }]
+  },
+  {
+    path: 'about',
+    component: HeaderComponent,
+    children: [{ path: '', component: AboutComponent }]
   }
 ];
 @NgModule({
