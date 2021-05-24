@@ -18,6 +18,16 @@ export class AuthService {
     private userService: UserService
   ) {}
 
+  checkLogin = () => {
+    this.auth.onAuthStateChanged(user => {
+      if (user) {
+        console.log('STILL SIGNED', user);
+      } else {
+        console.log('SIGNED OUT');
+      }
+    });
+  };
+
   login = (credentials: Credentials) => {
     this.auth
       .signInWithEmailAndPassword(credentials.email, credentials.password)
@@ -39,30 +49,6 @@ export class AuthService {
         }
         // Signed in
         // ...
-
-        /**
-         
-    this.auth
-      .signInWithEmailAndPassword(credentials.email, credentials.password)
-      .then(user => {
-        console.log('USER SIGNED', user);
-        console.log(
-          'bienvenido:',
-          user.user ? user.user.displayName : 'no displayname'
-        );
-
-        if (user.user) {
-          if (user.user.emailVerified) {
-            localStorage.setItem('user', JSON.stringify(user.user));
-            this.userService.getUser();
-            this.router.navigate(['/plate-generator']);
-          } else {
-            alert('This email is not verified yet. Please check your inbox');
-          }
-        }
-
-
-*/
       })
       .catch(error => {
         const errorCode = error.code;
@@ -127,5 +113,15 @@ export class AuthService {
         var errorMessage = error.message;
         alert(errorMessage);
       });
+  };
+
+  resetPassword = (email: string) => {
+    this.auth
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        alert('Te hemos enviado un email para que modifiques tu contraseña');
+        this.router.navigate(['/login']);
+      })
+      .catch(() => alert('Ha ocurrido un error. Inténtelo de nuevo'));
   };
 }

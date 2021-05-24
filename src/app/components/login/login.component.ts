@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
   }
 
   public login = () => {
-    console.log('click');
     const credentials = {
       email: this.email.value,
       password: this.password.value

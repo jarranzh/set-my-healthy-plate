@@ -5,10 +5,10 @@
       <mat-drawer #drawer mode="over" class="menuToggle__sideMenu">
         <ul class="sideMenu">
           <a
-            routerLink="/about"
+            routerLink="/plate-generator"
             (click)="drawer.toggle()"
             class="sideMenu__item"
-            ><li>¿Qué es SetMyHealthyPlate?</li></a
+            ><li>Home</li></a
           >
           <a
             routerLink="/favorites"
@@ -38,11 +38,21 @@
             ><li>Mi perfil</li></a
           >
           <a
+            routerLink="/about"
+            (click)="drawer.toggle()"
+            class="sideMenu__item"
+            ><li>About</li></a
+          >
+          <a
             routerLink="/"
             (click)="drawer.toggle()"
             class="sideMenu__item"
             (click)="logOut()"
-            ><li>Logout</li></a
+            ><li>
+              <mat-icon aria-hidden="false" aria-label="Logout icon"
+                >logout</mat-icon
+              >
+            </li></a
           >
         </ul>
       </mat-drawer>
@@ -68,9 +78,7 @@
     <div class="desktopNav">
       <ul class="nav__list">
         <li>
-          <a class="nav__list__link" routerLink="/about"
-            >¿Qué es SetMyHealthyPlate?</a
-          >
+          <a class="nav__list__link" routerLink="/plate-generator">Home</a>
         </li>
         <li>
           <a class="nav__list__link" routerLink="/favorites">Favoritos</a>
@@ -90,8 +98,13 @@
         </li>
         <li><a class="nav__list__link" routerLink="/">Mi perfil</a></li>
         <li>
-          <a class="nav__list__link" routerLink="/" (click)="logOut()"
-            >Logout</a
+          <a class="nav__list__link" routerLink="/about">About</a>
+        </li>
+        <li>
+          <a class="nav__list__link" routerLink="/" (click)="logOut()">
+            <mat-icon aria-hidden="false" aria-label="Logout icon"
+              >logout</mat-icon
+            ></a
           >
         </li>
       </ul>

@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -29,11 +30,13 @@ export class WeeklyMenuComponent implements OnInit {
   constructor(
     private userService: UserService,
     private plateService: PlateService,
+    private authService: AuthService,
     private router: Router,
     public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
+    this.authService.checkLogin();
     this.user = this.userService.getUser();
     if (!this.user) {
       this.router.navigate(['/login']);

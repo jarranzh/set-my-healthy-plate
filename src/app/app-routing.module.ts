@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { AboutComponent } from './components/about/about.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/plate-generator', pathMatch: 'full' },
@@ -22,6 +23,11 @@ const routes: Routes = [
     path: 'register',
     component: NoHeaderComponent,
     children: [{ path: '', component: RegisterComponent }]
+  },
+  {
+    path: 'reset-password',
+    component: NoHeaderComponent,
+    children: [{ path: '', component: ResetPasswordComponent }]
   },
   {
     path: 'plate-generator',

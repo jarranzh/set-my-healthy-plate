@@ -32,6 +32,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.component';
 import { AboutComponent } from './components/about/about.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AboutComponent } from './components/about/about.component';
     NotAllowedIngredientsComponent,
     NoHeaderComponent,
     ShoppingListComponent,
-    AboutComponent
+    AboutComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
