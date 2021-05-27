@@ -1,7 +1,51 @@
+@import '../../../variables';
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+.nav__list {
+  order: 2;
+
+  align-items: center;
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    flex: 3;
+  }
+
+  &__link {
+    color: $blue;
+    font-size: 16px;
+    font-weight: 100;
+    letter-spacing: 2px;
+    text-decoration: none;
+    padding: 1rem 0;
+    margin: 0 0.5rem;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    transition: all 0.5s;
+
+    &:hover {
+      color: white;
+      background-color: $blue;
+    }
+  }
+}
+
+.active {
+  font-weight: bold;
+}
+
 .logo {
   cursor: pointer;
   height: 4rem;
-  margin: 1rem;
 }
 
 .mainContent {

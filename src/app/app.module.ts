@@ -29,6 +29,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.compon
     NoHeaderComponent,
     ShoppingListComponent,
     AboutComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,

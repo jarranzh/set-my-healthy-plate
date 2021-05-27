@@ -18,7 +18,6 @@ import { User } from './../../models/user';
 })
 export class WeeklyMenuComponent implements OnInit {
   isLoading = false;
-  modalSelectedData!: string;
 
   public menu!: any; // Plate[];
   public user!: User;
@@ -103,11 +102,10 @@ export class WeeklyMenuComponent implements OnInit {
 
   openDialog = (data: any, category: string, index: number) => {
     const dialogRef = this.dialog.open(ModalContentComponent, {
-      data: { dataset: data, selectedData: this.modalSelectedData }
+      data: { dataset: data }
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
-      this.modalSelectedData = result;
       if (result !== '') {
         this.menu[index][category] = result;
         this.menu[index].isFavorite = false;

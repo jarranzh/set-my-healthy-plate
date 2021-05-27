@@ -1,9 +1,26 @@
-<img
-  class="logo"
-  src="../../../assets/logo.png"
-  alt="logo"
-  routerLink="/login"
-/>
+<nav class="header__nav">
+  <img
+    class="logo"
+    src="../../../assets/logo.png"
+    alt="logo"
+    routerLink="/login"
+  />
+  <ul class="nav__list">
+    <li>
+      <a class="nav__list__link" routerLink="/login" routerLinkActive="active"
+        >Login</a
+      >
+    </li>
+    <li>
+      <a
+        class="nav__list__link"
+        routerLink="/register"
+        routerLinkActive="active"
+        >Registro</a
+      >
+    </li>
+  </ul>
+</nav>
 <div class="mainContent">
   <router-outlet></router-outlet>
 </div>

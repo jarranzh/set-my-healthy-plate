@@ -58,6 +58,12 @@ export class AuthService {
   };
 
   register = (credentials: RegisterCredentials) => {
+    // this.checkUserName(credentials.userName);
+    // if (this.checkUserName(credentials.userName)) {
+    //   alert(
+    //     `Lo sentimos, el nombre de usuario ${credentials.userName} ya existe. Por favor, elige otro.`
+    //   );
+    // } else {
     this.auth
       .createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then(credential => {
@@ -69,7 +75,9 @@ export class AuthService {
           .set(credentials.email);
 
         if (credential.user) {
-          credential.user.updateProfile({ displayName: credentials.userName });
+          credential.user.updateProfile({
+            displayName: credentials.userName
+          });
         }
 
         this.verificarEmail(credential);
@@ -80,6 +88,13 @@ export class AuthService {
         alert(errorMessage + errorCode);
         // ..
       });
+    //}
+  };
+
+  checkUserName = async (userName: string) => {
+    const usersSnapshot = await this.db.database.ref('users').get();
+    console.log(usersSnapshot.val());
+    return false;
   };
 
   verificarEmail = (registeredUser: any) => {
@@ -88,14 +103,14 @@ export class AuthService {
       .then(() => {
         // Email sent.
         alert(
-          'Please check your inbox. We sent you an email to verify your account'
+          'Por favor, revisa tu bandeja de entrada. Te hemos enviado un email para verificar tu cuenta'
         );
 
         this.router.navigate(['/login']);
       })
       .catch((error: any) => {
         // An error happened.
-        console.log('an error happened', error);
+        console.log('Ha ocurrido un error. Inténtalo de nuevo.', error);
       });
   };
 

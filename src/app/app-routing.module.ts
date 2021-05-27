@@ -11,6 +11,7 @@ import { WeeklyMenuComponent } from './components/weekly-menu/weekly-menu.compon
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { AboutComponent } from './components/about/about.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { MyProfileComponent } from './components/my-profile/my-profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/plate-generator', pathMatch: 'full' },
@@ -53,6 +54,11 @@ const routes: Routes = [
     path: 'shopping-list',
     component: HeaderComponent,
     children: [{ path: '', component: ShoppingListComponent }]
+  },
+  {
+    path: 'my-profile',
+    component: HeaderComponent,
+    children: [{ path: '', component: MyProfileComponent }]
   },
   {
     path: 'about',

@@ -55,6 +55,10 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .active {
+    font-weight: bold;
+  }
+
   .navBar,
   .menuToggle__sideMenu {
     display: none;
@@ -101,6 +105,10 @@
       &:hover {
         color: white;
         background-color: $blue;
+      }
+
+      &.active {
+        font-weight: bold;
       }
     }
   }
