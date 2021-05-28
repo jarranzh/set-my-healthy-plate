@@ -63,7 +63,6 @@ export class AuthService {
     this.auth
       .createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then(credential => {
-        console.log('USER registered', credential);
         this.db.database
           .ref('users')
           .child(credentials.userName)

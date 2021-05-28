@@ -24,6 +24,10 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
+
+          .ingredient__buttons {
+            display: flex;
+          }
         }
       }
     }
