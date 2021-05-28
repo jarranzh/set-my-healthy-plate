@@ -1,11 +1,12 @@
-import { AuthService } from 'src/app/services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { faHeart as regularFaHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as solidFaHeart } from '@fortawesome/free-solid-svg-icons';
 import { Ingredients } from 'src/app/models/ingredients';
 import { Plate } from 'src/app/models/plate';
+import { AuthService } from 'src/app/services/auth.service';
 import { PlateService } from 'src/app/services/plate.service';
 import { UserService } from 'src/app/services/user.service';
 import { ModalContentComponent } from '../modal-content/modal-content.component';
@@ -31,6 +32,7 @@ export class WeeklyMenuComponent implements OnInit {
     private plateService: PlateService,
     private authService: AuthService,
     private router: Router,
+    private db: AngularFireDatabase,
     public dialog: MatDialog
   ) {}
 
@@ -89,14 +91,12 @@ export class WeeklyMenuComponent implements OnInit {
     index: number
   ) => {
     this.userService.banIngredient(ingredient, category);
-    this.plateService
-      .updateIngredientsLists()
-      .then(
-        async () =>
-          (this.menu[index][category] = await this.getRandomIngredient(
-            category
-          ))
-      );
+    this.plateService.updateIngredientsLists().then(async () => {
+      this.menu[index][category] = await this.getRandomIngredient(category);
+      this.db.database
+        .ref(`users/${this.user.displayName}/menu/${index}/`)
+        .set(this.menu[index]);
+    });
     this.menu[index].isFavorite = false;
   };
 
