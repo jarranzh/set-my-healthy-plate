@@ -77,8 +77,10 @@ export class WeeklyMenuComponent implements OnInit {
   };
 
   public deleteFav = async (plate: any, index: number) => {
-    this.userService.deleteFav(plate);
-    this.menu[index].isFavorite = false;
+    if (confirm('¿Seguro que quieres eliminarlo de favoritos?')) {
+      this.userService.deleteFav(plate);
+      this.menu[index].isFavorite = false;
+    }
   };
 
   public getRandomIngredient = (category: string) => {

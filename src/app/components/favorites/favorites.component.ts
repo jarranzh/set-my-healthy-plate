@@ -30,13 +30,14 @@ export class FavoritesComponent implements OnInit {
   getFavoritos = async () => {
     this.isLoading = true;
     this.platosFavoritos = await this.userService.getFavorites();
-    console.log('platos favorits', this.platosFavoritos);
     this.isLoading = false;
   };
 
   deleteFav = (plate: any) => {
-    this.userService.deleteFav(plate).then(() => {
-      this.getFavoritos();
-    });
+    if (confirm('¿Seguro que quieres eliminarlo de favoritos?')) {
+      this.userService.deleteFav(plate).then(() => {
+        this.getFavoritos();
+      });
+    }
   };
 }

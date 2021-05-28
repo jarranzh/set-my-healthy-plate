@@ -26,12 +26,9 @@ export class UserService {
     const snapshot = await this.db.database
       .ref(`users/${this.user.displayName}/favoritos`)
       .get();
-    console.log(snapshot.val());
 
     if (snapshot.val()) {
-      console.log('saving favs....');
       this.favorites = snapshot.val();
-      console.log(this.favorites);
       localStorage.setItem('favorites', JSON.stringify(snapshot.val()));
     } else {
       this.favorites = null;
@@ -58,7 +55,6 @@ export class UserService {
 
     if (snapshot.val()[element]) {
       length = snapshot.val()[element].length;
-      console.log(element, snapshot.val()[element].length);
     }
     return length;
   };
@@ -70,7 +66,6 @@ export class UserService {
       .get();
 
     if (snapshot.val()) {
-      console.log('xxxxxx', snapshot.val());
       isFavorite = snapshot.val().find((plate: any) => {
         return (
           plate.cereal === randomPlate.cereal &&
@@ -84,14 +79,11 @@ export class UserService {
     } else {
       isFavorite = false;
     }
-    console.log('isFav', isFavorite);
     return isFavorite;
   };
 
   saveAsFav = async (plate: Plate) => {
-    console.log('--SAVING FAV--', this.user.displayName);
     const favoritesLength = await this.getLength('favoritos');
-    console.log('fav length', favoritesLength);
     plate.isFavorite = true;
     this.db.database
       .ref(`users/${this.user.displayName}/favoritos/${favoritesLength}`)

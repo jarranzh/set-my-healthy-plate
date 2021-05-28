@@ -33,10 +33,6 @@ export class AuthService {
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(user => {
         console.log('USER SIGNED', user);
-        console.log(
-          'bienvenido:',
-          user.user ? user.user.displayName : 'no displayname'
-        );
 
         if (user.user) {
           if (user.user.emailVerified) {
@@ -44,14 +40,14 @@ export class AuthService {
             this.userService.getUser();
             this.router.navigate(['/plate-generator']);
           } else {
-            alert('This email is not verified yet. Please check your inbox');
+            alert(
+              'Esta cuenta todavía no se ha verificado. Por favor comprueba tu bandeja de entrada.'
+            );
           }
         }
         // Signed in
-        // ...
       })
       .catch(error => {
-        const errorCode = error.code;
         const errorMessage = error.message;
         alert(errorMessage);
       });
@@ -86,14 +82,12 @@ export class AuthService {
         const errorCode = error.code;
         const errorMessage = error.message;
         alert(errorMessage + errorCode);
-        // ..
       });
     //}
   };
 
   checkUserName = async (userName: string) => {
     const usersSnapshot = await this.db.database.ref('users').get();
-    console.log(usersSnapshot.val());
     return false;
   };
 
@@ -110,7 +104,7 @@ export class AuthService {
       })
       .catch((error: any) => {
         // An error happened.
-        console.log('Ha ocurrido un error. Inténtalo de nuevo.', error);
+        alert('Ha ocurrido un error. Inténtalo de nuevo.');
       });
   };
 
@@ -124,8 +118,7 @@ export class AuthService {
         this.router.navigate(['/login']);
       })
       .catch(error => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        const errorMessage = error.message;
         alert(errorMessage);
       });
   };

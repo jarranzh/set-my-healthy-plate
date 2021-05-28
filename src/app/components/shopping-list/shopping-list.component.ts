@@ -31,7 +31,6 @@ export class ShoppingListComponent implements OnInit {
   };
 
   removeFromShoppingList = async (event: any) => {
-    console.log(event.source.value);
     await this.userService.removeFromShoppingList(event.source.value);
     this.getShoppingList();
   };

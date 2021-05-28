@@ -78,8 +78,10 @@ export class PlateGeneratorComponent implements OnInit {
   };
 
   public deleteFav = async () => {
-    this.userService.deleteFav(this.randomPlate);
-    this.isFavorite = false;
+    if (confirm('¿Seguro que quieres eliminarlo de favoritos?')) {
+      this.userService.deleteFav(this.randomPlate);
+      this.isFavorite = false;
+    }
   };
 
   public banIngredient = async (ingredient: string, category: string) => {

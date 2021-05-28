@@ -95,11 +95,6 @@ export class PlateService {
       this.filteredVegetables = filteredVegetables;
       this.filteredFruits = filteredFruits;
 
-      console.log('FINAL PROTEINS', this.filteredProteins);
-      console.log('FINAL VEGETABLES', this.filteredVegetables);
-      console.log('FINAL CEREALS', this.filteredCereals);
-      console.log('FINAL FRUITS', this.filteredFruits);
-
       filteredIngredients = {
         proteins: filteredProteins,
         cereals: filteredCereals,
@@ -125,11 +120,7 @@ export class PlateService {
   };
 
   getRandomIngredient = async (category: string) => {
-    // if (!this.proteins || !this.cereals || !this.fruits || !this.vegetables) {
-    //   await this.getDBIngredients();
-    // }
-
-    let familyOfIngredients: any;
+    let familyOfIngredients!: string[];
     switch (category) {
       case 'protein':
         familyOfIngredients = this.filteredProteins;
@@ -169,7 +160,6 @@ export class PlateService {
       vegetable: vegetable,
       isFavorite: isFavorite
     };
-    // this.isFavorite = await this.userService.getIsFavorite(this.randomPlate);
     this.isFavorite = isFavorite;
     return this.randomPlate;
   };
@@ -192,7 +182,6 @@ export class PlateService {
       .flat()
       .filter((e: string | boolean) => e !== false && e !== true);
     shoppingList = [...new Set(shoppingList)];
-    console.log('shopping list', shoppingList);
 
     this.db.database
       .ref(`users/${this.user.displayName}/shoppingList`)
