@@ -1,13 +1,13 @@
+import { User } from 'src/app/models/user';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Plate } from '../models/plate';
-import { async } from 'q';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  public user: any;
+  public user: User;
   public isFavorite!: boolean;
   public favorites: any;
 
@@ -15,7 +15,7 @@ export class UserService {
     this.user = this.getUser();
   }
 
-  getUser = () => {
+  getUser = (): User => {
     const data = localStorage.getItem('user') as string;
     const userData = JSON.parse(data);
     this.user = userData;
@@ -29,7 +29,6 @@ export class UserService {
 
     if (snapshot.val()) {
       this.favorites = snapshot.val();
-      localStorage.setItem('favorites', JSON.stringify(snapshot.val()));
     } else {
       this.favorites = null;
     }

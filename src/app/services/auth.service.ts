@@ -1,8 +1,8 @@
-import { UserService } from 'src/app/services/user.service';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 import { Credentials, RegisterCredentials } from '../models/credentials';
 
 @Injectable({
@@ -18,22 +18,10 @@ export class AuthService {
     private userService: UserService
   ) {}
 
-  checkLogin = () => {
-    this.auth.onAuthStateChanged(user => {
-      if (user) {
-        console.log('STILL SIGNED', user);
-      } else {
-        console.log('SIGNED OUT');
-      }
-    });
-  };
-
   login = (credentials: Credentials) => {
     this.auth
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(user => {
-        console.log('USER SIGNED', user);
-
         if (user.user) {
           if (user.user.emailVerified) {
             localStorage.setItem('user', JSON.stringify(user.user));
@@ -54,12 +42,6 @@ export class AuthService {
   };
 
   register = (credentials: RegisterCredentials) => {
-    // this.checkUserName(credentials.userName);
-    // if (this.checkUserName(credentials.userName)) {
-    //   alert(
-    //     `Lo sentimos, el nombre de usuario ${credentials.userName} ya existe. Por favor, elige otro.`
-    //   );
-    // } else {
     this.auth
       .createUserWithEmailAndPassword(credentials.email, credentials.password)
       .then(credential => {
@@ -74,7 +56,6 @@ export class AuthService {
             displayName: credentials.userName
           });
         }
-
         this.verificarEmail(credential);
       })
       .catch(error => {
@@ -82,12 +63,6 @@ export class AuthService {
         const errorMessage = error.message;
         alert(errorMessage + errorCode);
       });
-    //}
-  };
-
-  checkUserName = async (userName: string) => {
-    const usersSnapshot = await this.db.database.ref('users').get();
-    return false;
   };
 
   verificarEmail = (registeredUser: any) => {
@@ -98,11 +73,9 @@ export class AuthService {
         alert(
           'Por favor, revisa tu bandeja de entrada. Te hemos enviado un email para verificar tu cuenta'
         );
-
         this.router.navigate(['/login']);
       })
       .catch((error: any) => {
-        // An error happened.
         alert('Ha ocurrido un error. Inténtalo de nuevo.');
       });
   };
@@ -112,8 +85,6 @@ export class AuthService {
       .signOut()
       .then(() => {
         localStorage.removeItem('user');
-        localStorage.removeItem('favorites');
-        console.log('Usuario ha cerrado sesión');
         this.router.navigate(['/login']);
       })
       .catch(error => {

@@ -2,6 +2,21 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
 
+## Instrucciones de uso
+
+La aplicación está desplegada a través de la plataforma Netlify y se puede usar accediendo al enlace `https://setmyhealthyplate.netlify.app/`.
+Al acceder a la aplicación, se muestra por defecto la página de Login. Como para poder usarla hay que estar registrado, la primera vez que se accede hay que ir a la página de registro y rellenar el formulario con el correo electrónico, nombre de usuario y contraseña. Después llegará un email a la bandeja de entrada del correo que se haya indicado, para validar la dirección, y una vez se valide ya se podrá acceder a la aplicación a través del formulario de la página de Login.
+Cuando el usuario ya se ha autenticado, la página que se muestra por defecto es la del generador de platos Harvard, con un botón con el texto “Quiero un Healthy Plate” para obtener una sugerencia de plato. Si se hace clic sobre el botón, se obtiene un pequeño gráfico redondo que representa un plato, con cuatro secciones que representan las cantidades que debe ocupar cada grupo de alimentos. Además, aparece también el conjunto de ingredientes que conforma la sugerencia de plato en sí, un icono con forma de corazón para guardar esa sugerencia de plato en favoritos, y al lado de cada ingrediente dos iconos: uno para cambiar el ingrediente por otro de la misma familia, y otro para prohibir ese ingrediente. Debajo del todo sigue apareciendo el botón “Quiero un Healthy Plate” para generar una combinación distinta.
+Usando el menú de navegación, que para dispositivos grandes se ve en la parte superior, y para dispositivos más pequeños se agrupa en un menú de hamburguesa en la esquina superior izquierda, se puede acceder al resto de la aplicación:
+
+- Favoritos: para ver los platos que se han marcado como favoritos, y si se desea, eliminar alguno.
+- Menú semanal: para generar un conjunto de siete platos aleatorios, uno para cada día de la semana. Si ya se ha generado, se accede a esta sección para revisarlo. Cualquiera de los platos que componen el menú se puede guardar como plato favorito, y cualquiera de sus ingredientes se puede modificar o prohibir.
+- Lista de la compra: para ver los ingredientes que son necesarios para poder elaborar los platos del menú semanal. Se muestra en formato de lista con caja de selección, y si no hace falta comprar algún ingrediente, al desmarcar la caja se elimina el ingrediente de la lista.
+- Alimentos no permitidos: para ver los ingredientes que se han marcado como prohibidos y que por tanto no se usan para generar platos. Igual que la lista de la compra, se presenta en formato de lista con cajas de selección, y si se desmarca alguna caja, se elimina de la lista ese ingrediente.
+- Mi perfil: para ver los datos del usuario, que son el nombre de usuario y la dirección de correo electrónico.
+- About: para saber más acerca de la aplicación, conocer su objetivo y entender mejor en qué consiste el plato de Harvard.
+  Aparte de eso, también hay un icono de cerrar sesión para que el usuario pueda salir de la aplicación.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
