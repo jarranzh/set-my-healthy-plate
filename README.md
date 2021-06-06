@@ -17,6 +17,17 @@ Usando el menú de navegación, que para dispositivos grandes se ve en la parte 
 - About: para saber más acerca de la aplicación, conocer su objetivo y entender mejor en qué consiste el plato de Harvard.
   Aparte de eso, también hay un icono de cerrar sesión para que el usuario pueda salir de la aplicación.
 
+## Instrucciones de instalación
+
+Para poder instalar la aplicación y crear un entorno de desarrollo hay que seguir los siguiente pasos:
+
+- Hay que crear una cuenta en Firebase. A continuación hay que crear un nuevo proyecto de Firebase. Este proceso es bastante intuitivo y está bien explicado en `https://firebase.google.com/`.
+- Una vez se tiene el proyecto creado, hay que importar la base de datos que se facilita como anexo (set-my-healthy-plate.json). La que se facilita incluye solamente con la lista de ingredientes, ya que los usuarios se van creando según se registran e interaccionan con la aplicación. Con esta información la aplicación ya tiene ingredientes para poder generar platos.
+- Después, es necesario modificar el archivo environment.ts del repositorio de código, que está ubicado en la ruta src/environments. Ahí habría que modificar el atributo firebaseConfig e indicar los valores propios del proyecto de Firebase que se haya creado.
+- Para poder ejecutar la aplicación en local hay que abrir la carpeta del repositorio de código en una terminal del sistema y ejecutar el comando npm install para instalar todas las dependencias del proyecto.
+- Una vez se tienen las dependencias instaladas, hay que ejecutar el comando `ng serve --open` para que se ejecute la aplicación en local. Normalmente se abre la aplicación automáticamente en el navegador, pero en caso de que no suceda, hay que abrir el navegador y acceder al puerto 4200: `http://localhost:4200/`
+- En este instante ya se dispone de la aplicación ejecutándose en local, vinculada a la nueva base de datos y cualquier modificación que se realice en el código ya se podrá ver reflejada.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
