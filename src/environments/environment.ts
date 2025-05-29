@@ -9,7 +9,7 @@ export const environment = {
     authDomain: 'set-my-healthy-plate.firebaseapp.com',
     databaseURL: 'https://set-my-healthy-plate-default-rtdb.firebaseio.com',
     projectId: 'set-my-healthy-plate',
-    storageBucket: 'set-my-healthy-plate.appspot.com',
+    storageBucket: 'set-my-healthy-plate.firebasestorage.app',
     messagingSenderId: '107360567603',
     appId: '1:107360567603:web:3344839addead6f4967e46',
     measurementId: 'G-CMM5168KHE'
